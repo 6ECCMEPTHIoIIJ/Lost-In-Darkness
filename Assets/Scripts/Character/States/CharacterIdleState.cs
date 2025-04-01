@@ -1,22 +1,39 @@
-public class CharacterIdleState : IState
+using System;
+using UnityEngine;
+
+public class CharacterIdleState : CharacterState
 {
-    public void OnEnter()
+    private static readonly int IdleAnimation = Animator.StringToHash("Idle");
+    public CharacterInputManager Input { get; set; }
+
+    public CharacterPhysicsManager Physics { get; set; }
+    public Animator Animator { get; set; }
+    public SpriteRenderer Sprite { get; set; }
+
+    
+    public override void OnEnter()
     {
-        throw new System.NotImplementedException();
+        Animator.SetBool(IdleAnimation, true);
     }
 
-    public void OnExit()
+    public override void OnExit()
     {
-        throw new System.NotImplementedException();
+        Animator.SetBool(IdleAnimation, false);
     }
 
-    public void OnUpdate(float deltaTime)
+    public override void OnUpdate()
     {
-        throw new System.NotImplementedException();
     }
 
-    public void OnFixedUpdate(float fixedDeltaTime)
+    public override void OnFixedUpdate()
     {
-        throw new System.NotImplementedException();
+        Physics.OnIdling();
+        Sprite.flipX = Input.FlipX || Input.WalkingDirection == 0 && Sprite.flipX;
+
+        if (Input.IsWalking)
+        {
+            StateManager.OnSwitchState(CharacterStates.Walking);
+            return;
+        }
     }
 }

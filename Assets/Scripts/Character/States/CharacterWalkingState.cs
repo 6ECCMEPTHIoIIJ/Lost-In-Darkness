@@ -1,22 +1,35 @@
-public class CharacterWalkingState : IState
+using UnityEngine;
+
+public class CharacterWalkingState : CharacterState
 {
-    public void OnEnter()
+    private static readonly int WalkingAnimation = Animator.StringToHash("Walking");
+
+    public CharacterInputManager Input { get; set; }
+    public CharacterPhysicsManager Physics { get; set; }
+    public Animator Animator { get; set; }
+    public SpriteRenderer Sprite { get; set; }
+
+    public override void OnEnter()
     {
-        throw new System.NotImplementedException();
     }
 
-    public void OnExit()
+    public override void OnExit()
     {
-        throw new System.NotImplementedException();
     }
 
-    public void OnUpdate(float deltaTime)
+    public override void OnUpdate()
     {
-        throw new System.NotImplementedException();
     }
 
-    public void OnFixedUpdate(float fixedDeltaTime)
+    public override void OnFixedUpdate()
     {
-        throw new System.NotImplementedException();
+        Physics.OnWalk(Input.WalkingDirection);
+        Animator.SetBool(WalkingAnimation, Input.IsWalking);
+        Sprite.flipX = Input.FlipX || Input.WalkingDirection == 0 && Sprite.flipX;
+
+        if (!Input.IsWalking)
+        {
+            StateManager.OnSwitchState(CharacterStates.Idle);
+        }
     }
 }

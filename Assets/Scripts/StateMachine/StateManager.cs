@@ -4,38 +4,47 @@ using System.Linq;
 
 public class StateManager<T> where T : Enum
 {
-    public IState CurrentState { get; private set; }
+    private State<T> _currentState;
 
-    public IState[] States { get; private set; }
+    private readonly State<T>[] _states;
 
-    public StateManager(SortedDictionary<T, IState> statesTable)
+    public StateManager(SortedDictionary<T, State<T>> statesTable)
     {
-        States = statesTable.Values.ToArray();
+        _states = statesTable.Values.ToArray();
+        foreach (var state in _states)
+        {
+            state.StateManager = this;
+        }
     }
 
-    public void OnUpdate(float deltaTime)
+    public void OnUpdate()
     {
-        CurrentState?.OnUpdate(deltaTime);
+        _currentState?.OnUpdate();
     }
 
-    public void OnFixedUpdate(float fixedDeltaTime)
+    public void OnFixedUpdate()
     {
-        CurrentState?.OnFixedUpdate(fixedDeltaTime);
+        _currentState?.OnFixedUpdate();
     }
 
 
     public void OnSwitchState(T stateId)
     {
-        CurrentState?.OnExit();
-        CurrentState = States[Convert.ToInt32(stateId)];
-        CurrentState?.OnEnter();
+        _currentState?.OnExit();
+        _currentState = _states[Convert.ToInt32(stateId)];
+        _currentState?.OnEnter();
     }
 }
 
-public interface IState
+public abstract class State<T> where T : Enum
 {
-    public void OnEnter();
-    public void OnExit();
-    public void OnUpdate(float deltaTime);
-    public void OnFixedUpdate(float fixedDeltaTime);
+    public StateManager<T> StateManager { get; set; }
+
+    public abstract void OnEnter();
+
+    public abstract void OnExit();
+
+    public abstract void OnUpdate();
+
+    public abstract void OnFixedUpdate();
 }

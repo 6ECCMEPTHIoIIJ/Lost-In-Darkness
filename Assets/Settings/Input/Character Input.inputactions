@@ -1,0 +1,56 @@
+{
+    "name": "Character Input",
+    "maps": [
+        {
+            "name": "Keyboard",
+            "id": "d8658d71-e412-4c94-b837-2808f7f4be75",
+            "actions": [
+                {
+                    "name": "Walk",
+                    "type": "Value",
+                    "id": "70815460-ee72-44da-a307-98a84a15736f",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "72996ba1-3d15-41b1-995c-6731bb59b202",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "7b6919d3-e69e-477a-9c88-d414ea1370d8",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "8050b076-d6e4-4412-acfb-3e9447f0a065",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

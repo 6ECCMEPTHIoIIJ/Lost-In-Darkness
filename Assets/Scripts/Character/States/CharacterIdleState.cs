@@ -13,6 +13,7 @@ public class CharacterIdleState : CharacterState
     
     public override void OnEnter()
     {
+        Physics.OnIdling();
         Animator.SetBool(IdleAnimation, true);
     }
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CharacterWalkingState : CharacterState
@@ -11,6 +12,7 @@ public class CharacterWalkingState : CharacterState
 
     public override void OnEnter()
     {
+        Physics.OnBeginWalking();
     }
 
     public override void OnExit()
@@ -23,13 +25,56 @@ public class CharacterWalkingState : CharacterState
 
     public override void OnFixedUpdate()
     {
-        Physics.OnWalk(Input.WalkingDirection);
-        Animator.SetBool(WalkingAnimation, Input.IsWalking);
+        Physics.WalkingDirection = Input.WalkingDirection;
         Sprite.flipX = Input.FlipX || Input.WalkingDirection == 0 && Sprite.flipX;
+        Animator.SetBool(WalkingAnimation, Input.IsWalking);
 
+        switch (Physics.WalkingState)
+        {
+            case CharacterWalkingStates.Idle:
+                OnIdling();
+                break;
+            case CharacterWalkingStates.Accelerating:
+                OnAccelerate();
+                break;
+            case CharacterWalkingStates.Walking:
+               OnWalk();
+                break;
+            case CharacterWalkingStates.Decelerating:
+               OnDecelerate();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+    
+    private void OnIdling() => StateManager.OnSwitchState(CharacterStates.Idle);
+
+    private void OnAccelerate()
+    {
         if (!Input.IsWalking)
         {
-            StateManager.OnSwitchState(CharacterStates.Idle);
+            Physics.OnFinishWalking();
+        }
+    }
+
+    private void OnWalk()
+    {
+        if (Input.IsWalking)
+        {
+            Physics.OnWalk();
+        }
+        else
+        {
+            Physics.OnFinishWalking();
+        }
+    }
+
+    private void OnDecelerate()
+    {
+        if (Input.IsWalking)
+        {
+            Physics.OnBeginWalking();
         }
     }
 }

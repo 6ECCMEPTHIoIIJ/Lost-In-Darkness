@@ -1,40 +1,44 @@
 using System;
 using UnityEngine;
 
-public class CharacterIdleState : CharacterState
+public class CharacterIdleState : CharacterGroundedState
 {
-    private static readonly int IdleAnimation = Animator.StringToHash("Idle");
     public CharacterInputManager Input { get; set; }
+    public CharacterWalkingPhysicsManager WalkingPhysics { get; set; }
+    public CharacterAnimationManager Animation { get; set; }
 
-    public CharacterPhysicsManager Physics { get; set; }
-    public Animator Animator { get; set; }
-    public SpriteRenderer Sprite { get; set; }
-
-    
     public override void OnEnter()
     {
-        Physics.OnIdling();
-        Animator.SetBool(IdleAnimation, true);
+        base.OnEnter();
+        Animation.SetBool(CharacterAnimations.Idle, true);
     }
 
     public override void OnExit()
     {
-        Animator.SetBool(IdleAnimation, false);
+        base.OnExit();
+        Animation.SetBool(CharacterAnimations.Idle, false);
     }
 
     public override void OnUpdate()
     {
+        if (WalkingPhysics.IsScared)
+        {
+            Animation.SetTrigger(CharacterAnimations.Scared);
+        }
+        else
+        {
+            Animation.ResetTrigger(CharacterAnimations.Scared);
+        }
     }
 
     public override void OnFixedUpdate()
     {
-        Physics.OnIdling();
-        Sprite.flipX = Input.FlipX || Input.WalkingDirection == 0 && Sprite.flipX;
+        base.OnFixedUpdate();
+        if (!IsActive) return;
 
-        if (Input.IsWalking)
+        if (Input.IsWalking && !WalkingPhysics.IsScared)
         {
             StateManager.OnSwitchState(CharacterStates.Walking);
-            return;
         }
     }
 }

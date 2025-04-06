@@ -16,6 +16,6 @@ public enum CharacterStates
 {
     Idle = 0,
     Walking,
-    Jumping,
+    InAir,
     Count,
 }

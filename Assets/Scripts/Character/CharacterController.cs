@@ -1,22 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterPhysicsManager))]
+[RequireComponent(typeof(CharacterWalkingPhysicsManager))]
+[RequireComponent(typeof(CharacterInAirPhysicsManager))]
 [RequireComponent(typeof(CharacterInputManager))]
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CharacterCollisionsDetector))]
+[RequireComponent(typeof(CharacterAnimationManager))]
 
 public class CharacterController : MonoBehaviour
 {
     private Transform _transform;
-    private Animator _animator;
-    private SpriteRenderer _sprite;
-    private CharacterPhysicsManager _physics;
+    private CharacterAnimationManager _animation;
+    private CharacterWalkingPhysicsManager _walkingPhysics;
+    private CharacterInAirPhysicsManager _inAirPhysics;
     private CharacterInputManager _input;
+    private CharacterCollisionsDetector _collisions;
 
     private CharacterIdleState _idleState;
     private CharacterWalkingState _walkingState;
+    private CharacterInAirState _inAirState;
 
     private StateManager<CharacterStates> _stateManager;
 
@@ -24,31 +26,39 @@ public class CharacterController : MonoBehaviour
     {
         _idleState = new CharacterIdleState();
         _walkingState = new CharacterWalkingState();
+        _inAirState = new CharacterInAirState();
         _stateManager = new CharacterStateManager(
             new SortedDictionary<CharacterStates, State<CharacterStates>>
             {
                 [CharacterStates.Idle] = _idleState,
                 [CharacterStates.Walking] = _walkingState,
+                [CharacterStates.InAir] = _inAirState,
             });
     }
 
     private void Start()
     {
         _transform = transform;
-        _physics = GetComponent<CharacterPhysicsManager>();
+        _walkingPhysics = GetComponent<CharacterWalkingPhysicsManager>();
+        _inAirPhysics = GetComponent<CharacterInAirPhysicsManager>();
         _input = GetComponent<CharacterInputManager>();
-        _animator = GetComponent<Animator>();
-        _sprite = GetComponent<SpriteRenderer>();
+        _animation = GetComponent<CharacterAnimationManager>();
+        _collisions = GetComponent<CharacterCollisionsDetector>();
 
         _idleState.Input = _input;
-        _idleState.Physics = _physics;
-        _idleState.Animator = _animator;
-        _idleState.Sprite = _sprite;
+        _idleState.WalkingPhysics = _walkingPhysics;
+        _idleState.InAirPhysics = _inAirPhysics;
+        _idleState.Animation = _animation;
+        _idleState.Collisions = _collisions;
 
         _walkingState.Input = _input;
-        _walkingState.Physics = _physics;
-        _walkingState.Animator = _animator;
-        _walkingState.Sprite = _sprite;
+        _walkingState.WalkingPhysics = _walkingPhysics;
+        _walkingState.InAirPhysics = _inAirPhysics;
+        _walkingState.Animation = _animation;
+        _walkingState.Collisions = _collisions;
+        
+        _inAirState.InAirPhysics = _inAirPhysics;
+        _inAirState.Collisions = _collisions;
 
         _stateManager.OnSwitchState(CharacterStates.Idle);
     }

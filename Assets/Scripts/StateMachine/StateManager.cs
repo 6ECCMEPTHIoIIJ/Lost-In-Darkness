@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class StateManager<T> where T : Enum
 {
@@ -32,17 +33,24 @@ public class StateManager<T> where T : Enum
     {
         _currentState?.OnExit();
         _currentState = _states[Convert.ToInt32(stateId)];
-        _currentState?.OnEnter();
+        _currentState.OnEnter();
     }
 }
 
 public abstract class State<T> where T : Enum
 {
+    public bool IsActive { get; set; }
     public StateManager<T> StateManager { get; set; }
 
-    public abstract void OnEnter();
+    public virtual void OnEnter()
+    {
+        IsActive = true;
+    }
 
-    public abstract void OnExit();
+    public virtual void OnExit()
+    {
+        IsActive = false;
+    }
 
     public abstract void OnUpdate();
 

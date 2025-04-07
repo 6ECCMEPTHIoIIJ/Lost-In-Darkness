@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class CharacterInAirState : CharacterState
 {
     public CharacterCollisionsDetector Collisions { get; set; }
@@ -14,6 +16,7 @@ public class CharacterInAirState : CharacterState
         InAirPhysics.OnFall();
         if (Collisions.IsGrounded)
         {
+            InAirPhysics.OnLand(Collisions.GroundDetectedPosition);
             StateManager.OnSwitchState(CharacterStates.Idle);
         }
     }

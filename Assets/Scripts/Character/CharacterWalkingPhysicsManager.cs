@@ -31,11 +31,11 @@ public class CharacterWalkingPhysicsManager : MonoBehaviour
 
     public bool IsScared => _beginScareTime < Time.fixedTime && Time.fixedTime <= _endScareTime;
 
-    private void Start()
+    private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _sprite = GetComponent<SpriteRenderer>();
-
+        
         _prevFlipX = _sprite.flipX;
         _flipX = _sprite.flipX;
     }

@@ -24,6 +24,13 @@ public class CharacterController : MonoBehaviour
 
     private void Awake()
     {
+        _transform = transform;
+        _walkingPhysics = GetComponent<CharacterWalkingPhysicsManager>();
+        _inAirPhysics = GetComponent<CharacterInAirPhysicsManager>();
+        _input = GetComponent<CharacterInputManager>();
+        _animation = GetComponent<CharacterAnimationManager>();
+        _collisions = GetComponent<CharacterCollisionsDetector>();
+        
         _idleState = new CharacterIdleState();
         _walkingState = new CharacterWalkingState();
         _inAirState = new CharacterInAirState();
@@ -38,22 +45,13 @@ public class CharacterController : MonoBehaviour
 
     private void Start()
     {
-        _transform = transform;
-        _walkingPhysics = GetComponent<CharacterWalkingPhysicsManager>();
-        _inAirPhysics = GetComponent<CharacterInAirPhysicsManager>();
-        _input = GetComponent<CharacterInputManager>();
-        _animation = GetComponent<CharacterAnimationManager>();
-        _collisions = GetComponent<CharacterCollisionsDetector>();
-
         _idleState.Input = _input;
         _idleState.WalkingPhysics = _walkingPhysics;
-        _idleState.InAirPhysics = _inAirPhysics;
         _idleState.Animation = _animation;
         _idleState.Collisions = _collisions;
 
         _walkingState.Input = _input;
         _walkingState.WalkingPhysics = _walkingPhysics;
-        _walkingState.InAirPhysics = _inAirPhysics;
         _walkingState.Animation = _animation;
         _walkingState.Collisions = _collisions;
         

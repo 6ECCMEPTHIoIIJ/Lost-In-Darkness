@@ -1,5 +1,4 @@
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterInAirPhysicsManager : MonoBehaviour
@@ -17,7 +16,7 @@ public class CharacterInAirPhysicsManager : MonoBehaviour
     [SerializeField] private float fallingSpeed;
     [SerializeField] private float gravity;
 
-    private void Start()
+    private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -28,12 +27,14 @@ public class CharacterInAirPhysicsManager : MonoBehaviour
 
     public void OnFall()
     {
-        _rigidbody.linearVelocityY = Mathf.Max(-fallingSpeed, _rigidbody.linearVelocityY - gravity * Time.fixedDeltaTime);
+        _rigidbody.linearVelocityY =
+            Mathf.Max(-fallingSpeed, _rigidbody.linearVelocityY - gravity * Time.fixedDeltaTime);
         _rigidbody.linearVelocityX = 0;
     }
 
-    public void OnLand()
+    public void OnLand(Vector2 groundDetectedPosition)
     {
+        _rigidbody.position = new Vector2(_rigidbody.position.x, groundDetectedPosition.y);
         _rigidbody.linearVelocityY = 0;
     }
 }

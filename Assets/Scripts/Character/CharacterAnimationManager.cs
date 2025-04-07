@@ -13,6 +13,8 @@ public class CharacterAnimationManager : MonoBehaviour
 
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
+        
         _animations = new SortedDictionary<CharacterAnimations, int>
         {
             [CharacterAnimations.Idle] = Animator.StringToHash("Idle"),
@@ -23,11 +25,6 @@ public class CharacterAnimationManager : MonoBehaviour
             [CharacterAnimations.Flipped] = Animator.StringToHash("Flipped"),
         }.Values.ToArray();
         _triggers = new bool[_animations.Length];
-    }
-
-    private void Start()
-    {
-        _animator = GetComponent<Animator>();
     }
 
     public void SetBool(CharacterAnimations anim, bool value) => _animator.SetBool(_animations[(int)anim], value);

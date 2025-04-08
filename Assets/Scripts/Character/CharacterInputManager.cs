@@ -12,8 +12,7 @@ public class CharacterInputManager : MonoBehaviour
 
     public float WalkingDirection { get; private set; }
     public bool IsWalking => WalkingDirection != 0;
-    public bool FlipX => WalkingDirection < 0;
-    public float WalkingTime { get; private set; }
+    public bool FlipX { get; private set; }
 
     public void OnWalk(InputAction.CallbackContext context)
     {
@@ -22,6 +21,7 @@ public class CharacterInputManager : MonoBehaviour
         if (_isWalking)
         {
             WalkingDirection = walkingDirection;
+            FlipX = walkingDirection < 0;
             if (_isStopping)
             {
                 _isStopping = false;

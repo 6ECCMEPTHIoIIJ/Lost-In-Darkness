@@ -3,51 +3,104 @@ using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-
 public class CharacterAnimationManager : MonoBehaviour
 {
     private Animator _animator;
-    private int[] _animations;
+    private CharacterAnimationKeyValue[] _animations;
 
-    private bool[] _triggers;
+    private float _endAnimationTime;
+
+    [field: SerializeField] public AnimationClip IdleAnimation { get; set; }
+    [field: SerializeField] public AnimationClip ScaredAnimation { get; set; }
+    [field: SerializeField] public AnimationClip BeginWalkingAnimation { get; set; }
+    [field: SerializeField] public AnimationClip WalkingAnimation { get; set; }
+    [field: SerializeField] public AnimationClip EndWalkingAnimation { get; set; }
+    [field: SerializeField] public AnimationClip FlipAnimation { get; set; }
+    [field: SerializeField] public AnimationClip JumpingAnimation { get; set; }
+    [field: SerializeField] public AnimationClip FallingAnimation { get; set; }
+
+    public CharacterAnimations CurrentAnimationId { get; private set; } = CharacterAnimations.None;
+    public float CurrentAnimationDurationLeft => Mathf.Max(0f, _endAnimationTime - Time.fixedTime);
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        
-        _animations = new SortedDictionary<CharacterAnimations, int>
+
+        _animations = new SortedDictionary<CharacterAnimations, CharacterAnimationKeyValue>
         {
-            [CharacterAnimations.Idle] = Animator.StringToHash("Idle"),
-            [CharacterAnimations.Scared] = Animator.StringToHash("Scared"),
-            [CharacterAnimations.Walking] = Animator.StringToHash("Walking"),
-            [CharacterAnimations.Jumping] = Animator.StringToHash("Jumping"),
-            [CharacterAnimations.Falling] = Animator.StringToHash("Falling"),
-            [CharacterAnimations.Flipped] = Animator.StringToHash("Flipped"),
+            [CharacterAnimations.Idle] = new()
+            {
+                AnimationHash = Animator.StringToHash("Idle"),
+                Animation = IdleAnimation
+            },
+            [CharacterAnimations.Scared] = new()
+            {
+                AnimationHash = Animator.StringToHash("Scared"),
+                Animation = ScaredAnimation
+            },
+            [CharacterAnimations.BeginWalking] = new()
+            {
+                AnimationHash = Animator.StringToHash("Begin Walking"),
+                Animation = BeginWalkingAnimation
+            },
+            [CharacterAnimations.Walking] = new()
+            {
+                AnimationHash = Animator.StringToHash("Walking"),
+                Animation = WalkingAnimation
+            },
+            [CharacterAnimations.EndWalking] = new()
+            {
+                AnimationHash = Animator.StringToHash("End Walking"),
+                Animation = EndWalkingAnimation
+            },
+            [CharacterAnimations.Jumping] = new()
+            {
+                AnimationHash = Animator.StringToHash("Jumping"),
+                Animation = JumpingAnimation
+            },
+            [CharacterAnimations.Falling] = new()
+            {
+                AnimationHash = Animator.StringToHash("Falling"),
+                Animation = FallingAnimation
+            },
+            [CharacterAnimations.Flip] = new()
+            {
+                AnimationHash = Animator.StringToHash("Flip"),
+                Animation = FlipAnimation
+            },
         }.Values.ToArray();
-        _triggers = new bool[_animations.Length];
+
+        OnSwitchAnimation(CharacterAnimations.Idle);
     }
 
-    public void SetBool(CharacterAnimations anim, bool value) => _animator.SetBool(_animations[(int)anim], value);
-    public void SetFloat(CharacterAnimations anim, float value) => _animator.SetFloat(_animations[(int)anim], value);
-    public void SetInteger(CharacterAnimations anim, int value) => _animator.SetInteger(_animations[(int)anim], value);
-
-    public void SetTrigger(CharacterAnimations anim)
+    public void OnSwitchAnimation(CharacterAnimations animationId, float offset = 0f, float speed = 1f)
     {
-        if (_triggers[(int)anim]) return;
-        _animator.SetTrigger(_animations[(int)anim]);
-        _triggers[(int)anim] = true;
-    }
+        if (CurrentAnimationId == animationId) return;
 
-    public void ResetTrigger(CharacterAnimations anim) => _triggers[(int)anim] = false;
+        var currentAnimation = _animations[(int)animationId];
+        _animator.speed = speed;
+        _animator.PlayInFixedTime(currentAnimation.AnimationHash, -1, offset);
+        CurrentAnimationId = animationId;
+        _endAnimationTime = Time.fixedTime + currentAnimation.Animation.length;
+    }
+}
+
+public struct CharacterAnimationKeyValue
+{
+    public int AnimationHash { get; set; }
+    public AnimationClip Animation { get; set; }
 }
 
 public enum CharacterAnimations
 {
+    None = -1,
     Idle = 0,
     Scared,
+    BeginWalking,
     Walking,
+    EndWalking,
     Jumping,
     Falling,
-    Flipped,
+    Flip,
     Count,
 }

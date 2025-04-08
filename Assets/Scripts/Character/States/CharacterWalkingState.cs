@@ -1,30 +1,19 @@
 using System;
-using UnityEngine;
 
-public class CharacterWalkingState : CharacterGroundedState
+public class CharacterWalkingState : CharacterWalkingBaseState
 {
-    public CharacterInputManager Input { get; set; }
-    public CharacterWalkingPhysicsManager WalkingPhysics { get; set; }
-    public CharacterAnimationManager Animation { get; set; }
+    public override void OnInitialize()
+    {
+        base.OnInitialize();
+        Controller.Physics.EndWalkingEvent += () => StateManager.OnSwitchState(CharacterStates.EndWalking);
+    }
 
     public override void OnEnter()
     {
         base.OnEnter();
-        WalkingPhysics.WalkingDirection = Input.WalkingDirection;
-        WalkingPhysics.OnWalk();
-    }
-
-    public override void OnUpdate()
-    {
-        Animation.SetBool(CharacterAnimations.Walking, Input.IsWalking);
-        if (WalkingPhysics.IsFlipping)
-        {
-            Animation.SetTrigger(CharacterAnimations.Flipped);
-        }
-        else
-        {
-            Animation.ResetTrigger(CharacterAnimations.Flipped);
-        }
+        Controller.Animation.OnSwitchAnimation(CharacterAnimations.Walking);
+        Controller.Physics.WalkingDirection = Controller.Input.WalkingDirection;
+        Controller.Physics.OnWalk();
     }
 
     public override void OnFixedUpdate()
@@ -32,14 +21,14 @@ public class CharacterWalkingState : CharacterGroundedState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        WalkingPhysics.WalkingDirection = Input.WalkingDirection;
-        if (WalkingPhysics.IsWalking)
+        if (Controller.Input.WalkingDirection == 0)
         {
-            WalkingPhysics.OnWalk();
+            StateManager.OnSwitchState(CharacterStates.EndWalking);
         }
         else
         {
-            StateManager.OnSwitchState(CharacterStates.Idle);
+            Controller.Physics.WalkingDirection = Controller.Input.WalkingDirection;
+            Controller.Physics.OnWalk();
         }
     }
 }

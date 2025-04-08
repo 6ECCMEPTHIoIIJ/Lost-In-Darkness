@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class CharacterInAirState : CharacterState
 {
-    public CharacterCollisionsDetector Collisions { get; set; }
-    public CharacterInAirPhysicsManager InAirPhysics { get; set; }
-
-    public override void OnUpdate()
+    public override void OnEnter()
     {
+        base.OnEnter();
+        Controller.Animation.OnSwitchAnimation(CharacterAnimations.Falling);
     }
 
     public override void OnFixedUpdate()
     {
+        base.OnFixedUpdate();
         if (!IsActive) return;
         
-        InAirPhysics.OnFall();
-        if (Collisions.IsGrounded)
+        Controller.Physics.OnFall();
+        if (Controller.Collisions.IsGrounded)
         {
-            InAirPhysics.OnLand(Collisions.GroundDetectedPosition);
+            Controller.Physics.OnLand(Controller.Collisions.GroundDetectedPosition);
             StateManager.OnSwitchState(CharacterStates.Idle);
         }
     }

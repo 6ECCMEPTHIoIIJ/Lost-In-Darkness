@@ -1,34 +1,16 @@
-using System;
-using UnityEngine;
-
 public class CharacterIdleState : CharacterGroundedState
 {
-    public CharacterInputManager Input { get; set; }
-    public CharacterWalkingPhysicsManager WalkingPhysics { get; set; }
-    public CharacterAnimationManager Animation { get; set; }
+    public override void OnInitialize()
+    {
+        base.OnInitialize();
+        Controller.Effects.ScaredEvent += () => StateManager.OnSwitchState(CharacterStates.Scared);
+    }
 
     public override void OnEnter()
     {
         base.OnEnter();
-        Animation.SetBool(CharacterAnimations.Idle, true);
-    }
-
-    public override void OnExit()
-    {
-        base.OnExit();
-        Animation.SetBool(CharacterAnimations.Idle, false);
-    }
-
-    public override void OnUpdate()
-    {
-        if (WalkingPhysics.IsScared)
-        {
-            Animation.SetTrigger(CharacterAnimations.Scared);
-        }
-        else
-        {
-            Animation.ResetTrigger(CharacterAnimations.Scared);
-        }
+        Controller.Animation.OnSwitchAnimation(CharacterAnimations.Idle);
+        Controller.Effects.OnBeginDaring();
     }
 
     public override void OnFixedUpdate()
@@ -36,9 +18,13 @@ public class CharacterIdleState : CharacterGroundedState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        if (Input.IsWalking && !WalkingPhysics.IsScared)
+        if (Controller.Input.IsWalking)
         {
-            StateManager.OnSwitchState(CharacterStates.Walking);
+            StateManager.OnSwitchState(CharacterStates.BeginWalking);
+        }
+        else
+        {
+            Controller.Effects.OnDare();
         }
     }
 }

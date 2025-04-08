@@ -1,11 +1,13 @@
+using UnityEngine;
+
 public abstract class CharacterGroundedState : CharacterState
 {
-    public CharacterCollisionsDetector Collisions { get; set; }
     public override void OnFixedUpdate()
     {
+        base.OnFixedUpdate();
         if (!IsActive) return;
-        
-        if (!Collisions.IsGrounded)
+
+        if (!Controller.Collisions.IsGrounded)
         {
             StateManager.OnSwitchState(CharacterStates.InAir);
         }

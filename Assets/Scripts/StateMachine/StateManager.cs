@@ -18,6 +18,14 @@ public class StateManager<T> where T : Enum
         }
     }
 
+    public void OnInitialize()
+    {
+        foreach (var state in _states)
+        {
+            state.OnInitialize();
+        }
+    }
+
     public void OnUpdate()
     {
         _currentState?.OnUpdate();
@@ -35,12 +43,22 @@ public class StateManager<T> where T : Enum
         _currentState = _states[Convert.ToInt32(stateId)];
         _currentState.OnEnter();
     }
+
+    public void ForEachState(Action<State<T>> action)
+    {
+        foreach (var state in _states)
+        {
+            action(state);
+        }
+    }
 }
 
 public abstract class State<T> where T : Enum
 {
-    public bool IsActive { get; set; }
+    protected bool IsActive { get; private set; }
     public StateManager<T> StateManager { get; set; }
+    
+    public virtual void OnInitialize() {}
 
     public virtual void OnEnter()
     {
@@ -52,7 +70,11 @@ public abstract class State<T> where T : Enum
         IsActive = false;
     }
 
-    public abstract void OnUpdate();
+    public virtual void OnUpdate()
+    {
+    }
 
-    public abstract void OnFixedUpdate();
+    public virtual void OnFixedUpdate()
+    {
+    }
 }

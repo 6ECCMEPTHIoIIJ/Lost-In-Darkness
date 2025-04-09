@@ -18,7 +18,7 @@ public class CharacterIdleState : CharacterGroundedState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        if (Controller.Input.IsWalking)
+        if (Controller.Input.IsMoving)
         {
             StateManager.OnSwitchState(CharacterStates.BeginWalking);
         }

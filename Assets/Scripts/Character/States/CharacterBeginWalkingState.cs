@@ -7,7 +7,7 @@ public class CharacterBeginWalkingState : CharacterWalkingBaseState
         base.OnInitialize();
         Controller.Physics.WalkingEvent += () => StateManager.OnSwitchState(CharacterStates.Walking);
     }
-    
+
     public override void OnEnter()
     {
         base.OnEnter();
@@ -19,7 +19,7 @@ public class CharacterBeginWalkingState : CharacterWalkingBaseState
             _ => 0f,
         };
         Controller.Animation.OnSwitchAnimation(CharacterAnimations.BeginWalking, beginWalkingOffset);
-        Controller.Physics.WalkingDirection = Controller.Input.WalkingDirection;
+        Controller.Physics.MovementDirection = Controller.Input.MovementDirection;
         Controller.Physics.OnBeginWalking();
     }
 
@@ -28,13 +28,13 @@ public class CharacterBeginWalkingState : CharacterWalkingBaseState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        if (Controller.Input.WalkingDirection == 0)
+        if (Controller.Input.MovementDirection == 0)
         {
             StateManager.OnSwitchState(CharacterStates.EndWalking);
         }
         else
         {
-            Controller.Physics.WalkingDirection = Controller.Input.WalkingDirection;
+            Controller.Physics.MovementDirection = Controller.Input.MovementDirection;
             Controller.Physics.OnBeginWalking();
         }
     }

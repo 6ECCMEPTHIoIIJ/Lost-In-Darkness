@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 775780c18d33ac348b475790847ef918
+guid: b441ed7570f7b9948868ef79e7811de3
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -54,9 +54,9 @@ ScriptedImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
     normalMap: 0
     textureFormat: 0
     maxTextureSize: 0
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638795759149043595
+  platformSettingsDirtyTick: 638798328138532908
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,19 +123,19 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: knight-Sheet
+  - name: Knight-Light-Sheet
     originalName: 
-    pivot: {x: 0.50115746, y: 0}
+    pivot: {x: 0.48534203, y: -0.020408165}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 7
-      y: 7
-      width: 864
-      height: 226
-    spriteID: fd021343ad6d0544da89c7ece6e169cf
+      x: 4
+      y: 4
+      width: 921
+      height: 147
+    spriteID: d4ad981839520c54b9c6aa849e91f8c4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -143,12 +143,12 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 7}
+    uvTransform: {x: -29, y: 1}
   spriteSheetImportData:
-  - name: knight-Sheet_0
+  - name: Knight-Light-Sheet_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -157,7 +157,7 @@ ScriptedImporter:
       y: 205
       width: 48
       height: 48
-    spriteID: ec9580e641449df46a707ffdea511d9a
+    spriteID: b641fdb30e1bd4246aa16c338e8761e5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -166,10 +166,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_1
+  - name: Knight-Light-Sheet_1
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -178,7 +178,7 @@ ScriptedImporter:
       y: 205
       width: 48
       height: 48
-    spriteID: f1558af7d371c55448684c0bab9b4118
+    spriteID: dd4d64d71bb6e174b9ed65affb83cf1d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -187,10 +187,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_2
+  - name: Knight-Light-Sheet_2
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -199,7 +199,7 @@ ScriptedImporter:
       y: 205
       width: 48
       height: 48
-    spriteID: 8c3fe414852021e4fb9e9f6e87014e75
+    spriteID: 2c6122dcef386594dbee9101bb51b675
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -208,10 +208,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_3
+  - name: Knight-Light-Sheet_3
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -220,7 +220,7 @@ ScriptedImporter:
       y: 205
       width: 48
       height: 48
-    spriteID: 956f0e4d1076a074f98e89dcb7ebcdca
+    spriteID: ba3c572d610ad5f4f9b2d8086222ff15
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -229,10 +229,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_4
+  - name: Knight-Light-Sheet_4
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -241,7 +241,7 @@ ScriptedImporter:
       y: 205
       width: 48
       height: 48
-    spriteID: 9ee72f48a1a3455408e32ecac2b38b8d
+    spriteID: 8651a020f38b97443b72fabbbfa1970b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -250,10 +250,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_5
+  - name: Knight-Light-Sheet_5
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -262,7 +262,7 @@ ScriptedImporter:
       y: 205
       width: 48
       height: 48
-    spriteID: e47beafe513f2ea4e9f54b5fe750b503
+    spriteID: 6fbccec810499d240addea103746ae02
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -271,10 +271,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_6
+  - name: Knight-Light-Sheet_6
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -283,7 +283,7 @@ ScriptedImporter:
       y: 205
       width: 48
       height: 48
-    spriteID: a72b6ee1a100caa45a8418a1f438ecfc
+    spriteID: 4970323b46b35c249a0989c7fe3f49c0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -292,10 +292,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_7
+  - name: Knight-Light-Sheet_7
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -304,7 +304,7 @@ ScriptedImporter:
       y: 205
       width: 48
       height: 48
-    spriteID: e9c47f6a6a0696049afe968d5d5f8af5
+    spriteID: e8755884488b87f4289473c52bd6b2b3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -313,10 +313,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_8
+  - name: Knight-Light-Sheet_8
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -325,7 +325,7 @@ ScriptedImporter:
       y: 157
       width: 48
       height: 48
-    spriteID: cae1d6b344f5b274fbe974fdc13bb9c4
+    spriteID: 4ac7fbff2df2d214189a7cc3b24237cd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -334,10 +334,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_9
+  - name: Knight-Light-Sheet_9
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -346,7 +346,7 @@ ScriptedImporter:
       y: 157
       width: 48
       height: 48
-    spriteID: c3e6862842ff6104ea08826cb2cf9595
+    spriteID: b6c2f308e520f204b9807240a709749d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -355,10 +355,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_10
+  - name: Knight-Light-Sheet_10
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -367,7 +367,7 @@ ScriptedImporter:
       y: 157
       width: 48
       height: 48
-    spriteID: a3dc4e0fc97368347a641c541ecfb87e
+    spriteID: 2a30ea70405aa9f43b4e9de03b4c8c2c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -376,10 +376,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_11
+  - name: Knight-Light-Sheet_11
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -388,7 +388,7 @@ ScriptedImporter:
       y: 157
       width: 48
       height: 48
-    spriteID: 480779082d09e124d904b3b6824cb0ac
+    spriteID: e9e9eeb85f1534b4cbc74cd602d9aafc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -397,10 +397,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_12
+  - name: Knight-Light-Sheet_12
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -409,7 +409,7 @@ ScriptedImporter:
       y: 157
       width: 48
       height: 48
-    spriteID: 1facc3f26a938504aa8c6ee44ebf43ae
+    spriteID: 83e7946598089c7429b20cacab316bfd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -418,10 +418,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_13
+  - name: Knight-Light-Sheet_13
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -430,7 +430,7 @@ ScriptedImporter:
       y: 109
       width: 48
       height: 48
-    spriteID: 644f44f62e5fcdd48a7cca4a7a3b3cff
+    spriteID: 171c84a19b431044b9855ca20de68b1d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -439,10 +439,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_14
+  - name: Knight-Light-Sheet_14
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -451,7 +451,7 @@ ScriptedImporter:
       y: 109
       width: 48
       height: 48
-    spriteID: 35f0b2ae72000d149a08ca397c40f358
+    spriteID: 6b20d54ccda39ea448e2d3305f18ac70
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -460,10 +460,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_15
+  - name: Knight-Light-Sheet_15
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -472,7 +472,7 @@ ScriptedImporter:
       y: 109
       width: 48
       height: 48
-    spriteID: cea66fdaba81135429e159fd2901ea7a
+    spriteID: 23d9f75b11089c44484919e6f86f51ad
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -481,10 +481,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_16
+  - name: Knight-Light-Sheet_16
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -493,7 +493,7 @@ ScriptedImporter:
       y: 109
       width: 48
       height: 48
-    spriteID: 31e7a7472dbd03a4f8c31d4aeafcaaaa
+    spriteID: 2950e913b534eb64d8f296f763b61f8d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -502,10 +502,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_17
+  - name: Knight-Light-Sheet_17
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -514,7 +514,7 @@ ScriptedImporter:
       y: 109
       width: 48
       height: 48
-    spriteID: 5e23b850e900f91438cad82333b1cdd6
+    spriteID: 6f0f43f72fd7bc442a381926c5edaccc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -523,10 +523,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_18
+  - name: Knight-Light-Sheet_18
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -535,7 +535,7 @@ ScriptedImporter:
       y: 109
       width: 48
       height: 48
-    spriteID: feefcff61df9ff147936d592d9ade39e
+    spriteID: d31b282fbfcfe4f4895dfdf87d72906b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -544,10 +544,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_19
+  - name: Knight-Light-Sheet_19
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -556,7 +556,7 @@ ScriptedImporter:
       y: 109
       width: 48
       height: 48
-    spriteID: 902ab65734e6ae944ad5e88cf543086d
+    spriteID: d6d82fa74f9d3524d8efce4f106d71ce
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -565,10 +565,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_20
+  - name: Knight-Light-Sheet_20
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -577,7 +577,7 @@ ScriptedImporter:
       y: 109
       width: 48
       height: 48
-    spriteID: c6f4056378f62d8419e79bad6b06d586
+    spriteID: d2fcc769b495acd46970c0f470de558f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -586,10 +586,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_21
+  - name: Knight-Light-Sheet_21
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -598,7 +598,7 @@ ScriptedImporter:
       y: 61
       width: 48
       height: 48
-    spriteID: 0cf3835f1d0653442b650f4a0ddaa116
+    spriteID: b78601acbd2a9c543b6dfc33f8fc5b6a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -607,10 +607,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_22
+  - name: Knight-Light-Sheet_22
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -619,7 +619,7 @@ ScriptedImporter:
       y: 61
       width: 48
       height: 48
-    spriteID: cac0904160ab1984b9ae112319dcf391
+    spriteID: d88ed45841c83d14289cf68d693a44a4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -628,10 +628,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_23
+  - name: Knight-Light-Sheet_23
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -640,7 +640,7 @@ ScriptedImporter:
       y: 61
       width: 48
       height: 48
-    spriteID: d20a9073215a63b4888bccfaef4cb22e
+    spriteID: 00b0b13411be6cc4c979104f0ef2f3fa
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -649,10 +649,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_24
+  - name: Knight-Light-Sheet_24
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -661,7 +661,7 @@ ScriptedImporter:
       y: 61
       width: 48
       height: 48
-    spriteID: f9cb85485e7732b4a820ba3e96b3ca02
+    spriteID: 7e62d3288737dea4abb34874e2b67f3a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -670,10 +670,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_25
+  - name: Knight-Light-Sheet_25
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -682,7 +682,7 @@ ScriptedImporter:
       y: 61
       width: 48
       height: 48
-    spriteID: 5805b03db68ede54aab885e0ef3654b8
+    spriteID: bb879bb7d7bd0f64e9b396f8aa397ba2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -691,10 +691,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_26
+  - name: Knight-Light-Sheet_26
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -703,7 +703,7 @@ ScriptedImporter:
       y: 61
       width: 48
       height: 48
-    spriteID: 26b3f7cb477c6e0428236a4659031d8d
+    spriteID: 5ee21e6144e1379489a80cff65f34a0a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -712,31 +712,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_27
+  - name: Knight-Light-Sheet_27
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 288
-      y: 61
-      width: 48
-      height: 48
-    spriteID: 7f4edfab5591aad4da424cff0d3fc680
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_28
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -745,7 +724,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 9446be2ce48750e4ba626d298a4579ed
+    spriteID: 2f6f09c62e99d0542a825982eb0e4dd4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -754,10 +733,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_29
+  - name: Knight-Light-Sheet_28
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -766,7 +745,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 0aaeed2433ccdd24b9d804c59e716235
+    spriteID: 430050e7e9fa29d439151a9a46c3dd32
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -775,10 +754,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_30
+  - name: Knight-Light-Sheet_29
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -787,7 +766,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: d982f78e469cc1b44b7fac4aa0010739
+    spriteID: af0ed40bd1a515c45b2231e8c8ecc84e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -796,10 +775,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_31
+  - name: Knight-Light-Sheet_30
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -808,7 +787,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: e37968312b174e746af9fd598ba32d39
+    spriteID: 957789ebfdd74a84e9f9ca7e6a607d88
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -817,10 +796,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_32
+  - name: Knight-Light-Sheet_31
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -829,7 +808,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 18b9f23da850d564a96701174e1f58ef
+    spriteID: 25b02bf6b2b26d548b9a86a3080b4fe0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -838,10 +817,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_33
+  - name: Knight-Light-Sheet_32
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -850,7 +829,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 89d328d30681f6c4891b26f902834b68
+    spriteID: 40aaff15105b56d4287a2491d8e4ba7b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -859,10 +838,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_34
+  - name: Knight-Light-Sheet_33
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -871,7 +850,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 7c35e6422d0fc4a469a62ef4488eb465
+    spriteID: d1a8b27222c68be4fba3d7efdab3f7f1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -880,10 +859,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_35
+  - name: Knight-Light-Sheet_34
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -892,7 +871,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 52f65a210c7034f4db92b165afb491ae
+    spriteID: 407e606a536c0b644a722836d5ee5e31
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -901,10 +880,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_36
+  - name: Knight-Light-Sheet_35
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -913,7 +892,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 8086520860523de4e9e0849338f6a149
+    spriteID: 5e516a457c8cec2438782c62a6740f30
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -922,10 +901,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_37
+  - name: Knight-Light-Sheet_36
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -934,7 +913,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: a5c4324830d86964aa7228613c946c9d
+    spriteID: d861c6a2081629349969dbe195a7a224
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -943,10 +922,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_38
+  - name: Knight-Light-Sheet_37
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -955,7 +934,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 6dd35db9a3251cd4c8fd237ae93ea60f
+    spriteID: 1674bcca155854c4e92a766c855ba07e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -964,10 +943,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_39
+  - name: Knight-Light-Sheet_38
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -976,7 +955,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 319710c900e5924479b68e98613e41e6
+    spriteID: 9735c44a75104c84b9a5befade61bd5b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -985,10 +964,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_40
+  - name: Knight-Light-Sheet_39
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -997,7 +976,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 22d47128a2fd20e419b2fda89e25e31f
+    spriteID: fae2405d18d73a84db3b8ba2d81877f3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1006,10 +985,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_41
+  - name: Knight-Light-Sheet_40
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -1018,7 +997,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 066e792e9b59ef04b9efa30e85e816cb
+    spriteID: 76e467e3f66119843935017c69848f1f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1027,10 +1006,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_42
+  - name: Knight-Light-Sheet_41
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -1039,7 +1018,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 0f448277b49f90843a6d34af89dc9d5d
+    spriteID: aff787a1aa5f92841bccf56ec66a98e6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1048,10 +1027,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_43
+  - name: Knight-Light-Sheet_42
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -1060,7 +1039,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 37bd3028ef7a904469ba9be7920878d4
+    spriteID: 4ece34cffe9720c4091d27cb9bf57d89
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1069,10 +1048,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_44
+  - name: Knight-Light-Sheet_43
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -1081,7 +1060,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 60680aa0e0d25564f859277d873283d0
+    spriteID: 60e01954f87baad458665077d63180a4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1090,10 +1069,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_45
+  - name: Knight-Light-Sheet_44
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -1102,7 +1081,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 16410a793b51b104ebfee9c50dcb9334
+    spriteID: 0c30c7d64ab9a164ebf1726c3c55e09f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1111,10 +1090,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_46
+  - name: Knight-Light-Sheet_45
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -1123,7 +1102,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: 7251a935f4bcdc948a6e0139ef915b5a
+    spriteID: 04d1223a420b73c46ada1406b64e138b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1132,10 +1111,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: knight-Sheet_47
+  - name: Knight-Light-Sheet_46
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -1144,7 +1123,7 @@ ScriptedImporter:
       y: 13
       width: 48
       height: 48
-    spriteID: d15da668da3427f4fb168a5eec5a6bef
+    spriteID: 57610a5681174be46b35fffbf25d3690
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1155,13 +1134,13 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: -7500616
-    name: Layer 1
-    layerFlags: 3
+    guid: 1076936156
+    name: Knight-Light-Sheet
+    layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Knight-Sheet
+    - name: Knight-Light-Sheet
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -1169,7 +1148,7 @@ ScriptedImporter:
         y: 0
         width: 960
         height: 240
-      spriteId: fd021343ad6d0544da89c7ece6e169cf
+      spriteId: d4ad981839520c54b9c6aa849e91f8c4
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -1188,7 +1167,7 @@ ScriptedImporter:
   - name: DefaultTexturePlatform
     overridden: 0
     ignorePlatformSupport: 0
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0

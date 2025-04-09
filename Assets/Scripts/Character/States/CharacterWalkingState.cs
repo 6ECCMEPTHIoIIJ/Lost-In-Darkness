@@ -12,7 +12,7 @@ public class CharacterWalkingState : CharacterWalkingBaseState
     {
         base.OnEnter();
         Controller.Animation.OnSwitchAnimation(CharacterAnimations.Walking);
-        Controller.Physics.WalkingDirection = Controller.Input.WalkingDirection;
+        Controller.Physics.MovementDirection = Controller.Input.MovementDirection;
         Controller.Physics.OnWalk();
     }
 
@@ -21,13 +21,13 @@ public class CharacterWalkingState : CharacterWalkingBaseState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        if (Controller.Input.WalkingDirection == 0)
+        if (Controller.Input.MovementDirection == 0)
         {
             StateManager.OnSwitchState(CharacterStates.EndWalking);
         }
         else
         {
-            Controller.Physics.WalkingDirection = Controller.Input.WalkingDirection;
+            Controller.Physics.MovementDirection = Controller.Input.MovementDirection;
             Controller.Physics.OnWalk();
         }
     }

@@ -20,7 +20,7 @@ public class CharacterEndWalkingState : CharacterWalkingBaseState
             _ => 0f,
         };
         Controller.Animation.OnSwitchAnimation(CharacterAnimations.EndWalking, endWalkingOffset);
-        Controller.Physics.WalkingDirection = Controller.Input.WalkingDirection;
+        Controller.Physics.MovementDirection = Controller.Input.MovementDirection;
         Controller.Physics.OnEndWalking();
     }
 
@@ -29,7 +29,7 @@ public class CharacterEndWalkingState : CharacterWalkingBaseState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        if (Controller.Input.WalkingDirection != 0)
+        if (Controller.Input.MovementDirection != 0)
         {
             StateManager.OnSwitchState(CharacterStates.BeginWalking);
         }

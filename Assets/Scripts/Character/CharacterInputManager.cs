@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,42 +6,36 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class CharacterInputManager : MonoBehaviour
 {
-    private bool _isWalking;
+    private bool _isStoping;
     private bool _isStopping;
+    private float _stopTime;
 
     [SerializeField] private float stopDelay;
 
-    public float WalkingDirection { get; private set; }
-    public bool IsWalking => WalkingDirection != 0;
+    public float MovementDirection { get; private set; }
+    public bool IsMoving => MovementDirection != 0;
     public bool FlipX { get; private set; }
 
-    public void OnWalk(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        var walkingDirection = context.ReadValue<float>();
-        _isWalking = walkingDirection != 0;
-        if (_isWalking)
+        var movementDirection = context.ReadValue<float>();
+        _isStoping = movementDirection == 0;
+        if (!_isStoping)
         {
-            WalkingDirection = walkingDirection;
-            FlipX = walkingDirection < 0;
-            if (_isStopping)
-            {
-                _isStopping = false;
-                StopAllCoroutines();
-            }
+            MovementDirection = movementDirection;
+            FlipX = movementDirection < 0;
         }
-        else if (!_isStopping)
+        else
         {
-            _isStopping = true;
-            StartCoroutine(StopWalking());
+            _stopTime = Time.fixedTime + stopDelay;
         }
     }
 
-    private IEnumerator StopWalking()
+    private void FixedUpdate()
     {
-        yield return new WaitForSeconds(stopDelay);
-        if (!_isWalking)
+        if (_isStoping && Time.fixedTime > _stopTime)
         {
-            WalkingDirection = 0;
+            MovementDirection = 0;
         }
     }
 }

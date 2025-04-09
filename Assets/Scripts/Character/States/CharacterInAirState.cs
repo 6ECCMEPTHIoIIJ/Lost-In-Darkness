@@ -12,7 +12,8 @@ public class CharacterInAirState : CharacterState
     {
         base.OnFixedUpdate();
         if (!IsActive) return;
-        
+
+        Controller.Physics.MovementDirection = Controller.Input.MovementDirection;
         Controller.Physics.OnFall();
         if (Controller.Collisions.IsGrounded)
         {

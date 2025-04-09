@@ -25,6 +25,7 @@ public class CharacterPhysicsManager : MonoBehaviour
     [SerializeField] private float endSlowWalkingDuration;
     [SerializeField] private float flipDuration;
 
+    [SerializeField] private float inAirSpeed;
     [SerializeField] private float fallingSpeed;
     [SerializeField] private float gravity;
 
@@ -33,7 +34,7 @@ public class CharacterPhysicsManager : MonoBehaviour
     public event Action WalkingEvent;
     public event Action IdleEvent;
 
-    public float WalkingDirection { get; set; }
+    public float MovementDirection { get; set; }
     public bool FlipX { get; set; }
 
     private void Awake()
@@ -78,19 +79,19 @@ public class CharacterPhysicsManager : MonoBehaviour
         {
             _rigidbody.linearVelocityX = currentDuration < beginSlowWalkingDuration
                 ? 0
-                : WalkingDirection * slowWalkingSpeed;
+                : MovementDirection * slowWalkingSpeed;
         }
     }
 
     public void OnWalk()
     {
-        if (WalkingDirection == 0)
+        if (MovementDirection == 0)
         {
             EndWalkingEvent?.Invoke();
         }
         else
         {
-            _rigidbody.linearVelocityX = WalkingDirection * walkingSpeed;
+            _rigidbody.linearVelocityX = MovementDirection * walkingSpeed;
         }
     }
 
@@ -110,16 +111,16 @@ public class CharacterPhysicsManager : MonoBehaviour
         else
         {
             _rigidbody.linearVelocityX = currentDuration < endSlowWalkingDuration
-                ? WalkingDirection * slowWalkingSpeed
+                ? MovementDirection * slowWalkingSpeed
                 : 0;
         }
     }
 
     public void OnFall()
     {
+        _rigidbody.linearVelocityX = MovementDirection * inAirSpeed;
         _rigidbody.linearVelocityY =
             Mathf.Max(-fallingSpeed, _rigidbody.linearVelocityY - gravity * Time.fixedDeltaTime);
-        _rigidbody.linearVelocityX = 0;
     }
 
     public void OnLand(Vector2 groundDetectedPosition)

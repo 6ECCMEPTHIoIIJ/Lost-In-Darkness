@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CharacterLightMat
+  m_Name: Character-Mat
   m_Shader: {fileID: -6465566751694194690, guid: ef476df3d650ce046821082232e02053, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -63,7 +63,7 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _LightColor: {r: 5.3403134, g: 5.3403134, b: 5.3403134, a: 0}
+    - _LightColor: {r: 5.9921575, g: 2.1222727, b: 0, a: 0}
     - _Offset: {r: 0, g: -0.84, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

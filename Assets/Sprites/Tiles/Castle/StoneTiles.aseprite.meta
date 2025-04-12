@@ -124,7 +124,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData: []
   spriteSheetImportData: []
-  asepriteLayers: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 1473891956
+    name: StoneTiles
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells: []
+    linkedCells: []
+    parentIndex: -1
   platformSettings:
   - name: Default
     overridden: 0

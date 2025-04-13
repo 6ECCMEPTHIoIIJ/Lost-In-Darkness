@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 81ef9c84ce800104381c5d8bf88db921
+guid: ca64cd7eab905bb4b883cf2a0efd8ca7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4233416731134222326
-    second: GrassFlyingPlatform-HeightMap_0
+      213: -2366576915299762980
+    second: GrassFlyingPlatform-NormalMap_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GrassFlyingPlatform-HeightMap_0
+      name: GrassFlyingPlatform-NormalMap_0
       rect:
         serializedVersion: 2
         x: 25
         y: 38
         width: 67
-        height: 40
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ff537d561e10ca30800000000000000
-      internalID: 4233416731134222326
+      spriteID: cdcfaed85da382fd0800000000000000
+      internalID: -2366576915299762980
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      GrassFlyingPlatform-HeightMap_0: 4233416731134222326
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

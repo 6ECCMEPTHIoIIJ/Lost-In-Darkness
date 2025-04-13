@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GrassFlyingPlatform-HeightMap_0: 4233416731134222326
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

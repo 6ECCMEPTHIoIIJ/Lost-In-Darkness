@@ -119,6 +119,90 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1615073914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1615073916}
+  - component: {fileID: 1615073915}
+  m_Layer: 0
+  m_Name: Cave Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1615073915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615073914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 2
+  m_LightType: 4
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 0.048284233, b: 0, a: 1}
+  m_Intensity: 0.5
+  m_LightVolumeIntensity: 1
+  m_LightVolumeEnabled: 0
+  m_ApplyToSortingLayers: 000000006745692b1d115a98
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 1
+  m_NormalMapQuality: 0
+  m_UseNormalMap: 0
+  m_ShadowsEnabled: 1
+  m_ShadowIntensity: 0.75
+  m_ShadowSoftness: 0.3
+  m_ShadowSoftnessFalloffIntensity: 0.5
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 2
+  m_PointLightOuterRadius: 4
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
+--- !u!4 &1615073916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615073914}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.4821286, y: -1.621562, z: -0.025663005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1892681845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -193,11 +277,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.04154728
+      value: 0.07661823
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.91690546
+      value: 0.84544253
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
@@ -209,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8492249380103608119, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_RenderPostProcessing
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -267,10 +355,6 @@ PrefabInstance:
     - target: {fileID: 1708404838629947354, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
       propertyPath: m_Name
       value: Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 5377540289489840103, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
-      propertyPath: m_NormalMapQuality
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5377540289489840103, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
       propertyPath: m_PointLightOuterRadius
@@ -473,7 +557,7 @@ PrefabInstance:
     - target: {fileID: 7239948339513553266, guid: 139b0ee658925464fb9b40f7b1e316a4, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 5bf1b3df1bb38204c9052d19a16002d2, type: 2}
+      objectReference: {fileID: 2100000, guid: 0b283828149cea748b77cd9ac0a0a09b, type: 2}
     - target: {fileID: 7557761546413858807, guid: 139b0ee658925464fb9b40f7b1e316a4, type: 3}
       propertyPath: m_NormalMapQuality
       value: 1
@@ -551,3 +635,4 @@ SceneRoots:
   - {fileID: 1892681845}
   - {fileID: 2081462018}
   - {fileID: 2106010140}
+  - {fileID: 1615073916}

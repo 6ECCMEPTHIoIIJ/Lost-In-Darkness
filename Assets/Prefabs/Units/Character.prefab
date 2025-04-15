@@ -300,17 +300,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundDetectRays:
   - serializedVersion: 2
-    x: 0
+    x: 0.03125
     y: 0.1
     width: 0
     height: -0.2
   - serializedVersion: 2
-    x: -0.35
+    x: -0.25
     y: 0.1
     width: 0
     height: -0.2
   - serializedVersion: 2
-    x: 0.35
+    x: 0.3125
     y: 0.1
     width: 0
     height: -0.2

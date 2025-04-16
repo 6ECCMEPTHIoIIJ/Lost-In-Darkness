@@ -23,7 +23,9 @@ public class CharacterCollisionsDetector : MonoBehaviour
         var characterPosition = new Vector2(_transform.position.x, _transform.position.y);
         foreach (var groundDetectRay in groundDetectRays)
         {
-            var groundDetectOrigin = characterPosition + groundDetectRay.position;
+            var groundDetectRayPosition = new Vector2(groundDetectRay.x * Mathf.Sign(_transform.localScale.x),
+                groundDetectRay.y * Mathf.Sign(_transform.localScale.y));
+            var groundDetectOrigin = characterPosition + groundDetectRayPosition;
             var groundDetectDirection = groundDetectRay.size;
             var groundDetectDistance = groundDetectDirection.magnitude;
             var groundHit =
@@ -41,8 +43,10 @@ public class CharacterCollisionsDetector : MonoBehaviour
         Gizmos.color = groundDetectColor;
         foreach (var groundDetectRay in groundDetectRays)
         {
+            var groundDetectRayPosition = new Vector2(groundDetectRay.x * Mathf.Sign(_transform.localScale.x),
+                groundDetectRay.y * Mathf.Sign(_transform.localScale.y));
             var groundDetectFrom =
-                _transform.position + new Vector3(groundDetectRay.position.x, groundDetectRay.position.y);
+                _transform.position + new Vector3(groundDetectRayPosition.x, groundDetectRayPosition.y);
             var groundDetectTo = groundDetectFrom + new Vector3(groundDetectRay.size.x, groundDetectRay.size.y);
             Gizmos.DrawLine(groundDetectFrom, groundDetectTo);
         }

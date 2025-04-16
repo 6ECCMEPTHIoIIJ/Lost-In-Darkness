@@ -271,7 +271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: orthographic size
-      value: 6.0625
+      value: 9.625
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_BackGroundColor.b
@@ -287,7 +287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.037572253
+      value: 0.2090909
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -295,11 +295,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9248555
+      value: 0.58181816
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.9974293
+      value: 0.99676377
       objectReference: {fileID: 0}
     - target: {fileID: 8492249380103608119, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_Enabled
@@ -19403,6 +19403,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 744025180510762042, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
+      propertyPath: flipDuration
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1451599422878987873, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.75

@@ -1,4 +1,4 @@
-public class CharacterScaredState : CharacterGroundedState
+public class CharacterScaredState : CharacterState
 {
     public override void OnInitialize()
     {

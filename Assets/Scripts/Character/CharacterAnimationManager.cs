@@ -20,7 +20,7 @@ public class CharacterAnimationManager : MonoBehaviour
     [field: SerializeField] public AnimationClip FallingAnimation { get; set; }
 
     public CharacterAnimations CurrentAnimationId { get; private set; } = CharacterAnimations.None;
-    public float CurrentAnimationDurationLeft => Mathf.Max(0f, _endAnimationTime - Time.fixedTime);
+    public float CurrentAnimationDurationLeft => Mathf.Max(0f, _endAnimationTime - Time.time);
 
     private void Awake()
     {
@@ -81,7 +81,7 @@ public class CharacterAnimationManager : MonoBehaviour
         _animator.speed = speed;
         _animator.PlayInFixedTime(currentAnimation.AnimationHash, -1, offset);
         CurrentAnimationId = animationId;
-        _endAnimationTime = Time.fixedTime + currentAnimation.Animation.length;
+        _endAnimationTime = Time.time + currentAnimation.Animation.length;
     }
 }
 

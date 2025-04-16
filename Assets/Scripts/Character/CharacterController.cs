@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterPhysicsManager))]
@@ -31,7 +30,7 @@ public class CharacterController : MonoBehaviour
 
     private void Start()
     {
-        _stateManager.ForEachState(state => (state as CharacterState)!.Controller = this);
+        _stateManager.Controller = this;
         _stateManager.OnInitialize();
         _stateManager.OnSwitchState(CharacterStates.Idle);
     }

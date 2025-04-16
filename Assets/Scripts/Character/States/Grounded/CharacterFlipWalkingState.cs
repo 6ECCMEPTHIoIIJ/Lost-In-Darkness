@@ -1,4 +1,4 @@
-public class CharacterFlipState : CharacterGroundedState
+public class CharacterFlipWalkingState : CharacterState
 {
     public override void OnInitialize()
     {

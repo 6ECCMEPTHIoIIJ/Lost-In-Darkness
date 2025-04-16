@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class CharacterEndWalkingState : CharacterWalkingBaseState
+public class CharacterEndWalkingState : CharacterState
 {
     public override void OnInitialize()
     {

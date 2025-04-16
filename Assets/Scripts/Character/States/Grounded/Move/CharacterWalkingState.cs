@@ -1,6 +1,6 @@
 using System;
 
-public class CharacterWalkingState : CharacterWalkingBaseState
+public class CharacterWalkingState : CharacterState
 {
     public override void OnInitialize()
     {

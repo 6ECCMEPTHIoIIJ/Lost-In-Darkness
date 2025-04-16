@@ -1,4 +1,4 @@
-public class CharacterIdleState : CharacterGroundedState
+public class CharacterIdleState : CharacterState
 {
     public override void OnInitialize()
     {

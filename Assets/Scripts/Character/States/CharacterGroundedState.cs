@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public abstract class CharacterGroundedState : CharacterState
+public class CharacterGroundedState : CharacterState
 {
     public override void OnFixedUpdate()
     {

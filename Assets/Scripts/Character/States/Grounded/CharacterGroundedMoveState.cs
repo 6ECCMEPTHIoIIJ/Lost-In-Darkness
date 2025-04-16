@@ -1,4 +1,4 @@
-public abstract class CharacterWalkingBaseState : CharacterGroundedState
+public class CharacterGroundedMoveState : CharacterState
 {
     public override void OnFixedUpdate()
     {
@@ -7,7 +7,7 @@ public abstract class CharacterWalkingBaseState : CharacterGroundedState
 
         if (Controller.Input.FlipX != Controller.Physics.FlipX)
         {
-            StateManager.OnSwitchState(CharacterStates.Flip);
+            StateManager.OnSwitchState(CharacterStates.FlipWalking);
         }
     }
 }

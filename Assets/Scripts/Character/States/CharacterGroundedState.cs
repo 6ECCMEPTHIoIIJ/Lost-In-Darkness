@@ -2,15 +2,15 @@ using UnityEngine;
 
 public abstract class CharacterGroundedState : State<CharacterStates>
 {
-    private Rect[] _groundDetects;
-    private LayerMask _whatIsGround;
+    private Rect[] _floorDetects;
+    private LayerMask _whatIsFloor;
 
     private Transform _transform;
 
     public override void OnSetData(object data)
     {
         base.OnSetData(data);
-        (_transform, _groundDetects, _whatIsGround) = (Data)data;
+        (_transform, _floorDetects, _whatIsFloor) = (Data)data;
     }
 
     public override void OnFixedUpdate()
@@ -18,23 +18,23 @@ public abstract class CharacterGroundedState : State<CharacterStates>
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        if (!IsGrounded())
+        if (!IsTouchingFloor())
         {
-            SwitchState(CharacterStates.InAir);
+            SwitchState(CharacterStates.Falling);
         }
     }
 
-    private bool IsGrounded()
+    private bool IsTouchingFloor()
     {
         var transform2D = new Vector2(_transform.position.x, _transform.position.y);
-        foreach (var groundDetect in _groundDetects)
+        foreach (var detect in _floorDetects)
         {
-            var scaledPosition = new Vector2(groundDetect.x * Mathf.Sign(_transform.localScale.x),
-                groundDetect.y * Mathf.Sign(_transform.localScale.y));
+            var scaledPosition = new Vector2(detect.x * Mathf.Sign(_transform.localScale.x),
+                detect.y * Mathf.Sign(_transform.localScale.y));
             var origin = transform2D + scaledPosition;
-            var direction = groundDetect.size.normalized;
-            var distance = groundDetect.size.magnitude;
-            var hit = Physics2D.Raycast(origin, direction, distance, _whatIsGround);
+            var direction = detect.size.normalized;
+            var distance = detect.size.magnitude;
+            var hit = Physics2D.Raycast(origin, direction, distance, _whatIsFloor);
             if (!hit) continue;
             return true;
         }
@@ -45,14 +45,14 @@ public abstract class CharacterGroundedState : State<CharacterStates>
     public abstract class Data
     {
         public Transform Transform;
-        public Rect[] GroundDetects;
-        public LayerMask WhatIsGround;
+        public Rect[] FloorDetects;
+        public LayerMask WhatIsFloor;
 
-        public void Deconstruct(out Transform transform, out Rect[] groundDetects, out LayerMask whatIsGround)
+        public void Deconstruct(out Transform transform, out Rect[] floorDetects, out LayerMask whatIsFloor)
         {
             transform = Transform;
-            groundDetects = GroundDetects;
-            whatIsGround = WhatIsGround;
+            floorDetects = FloorDetects;
+            whatIsFloor = WhatIsFloor;
         }
     }
 }

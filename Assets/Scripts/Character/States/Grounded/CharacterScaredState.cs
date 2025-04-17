@@ -22,9 +22,9 @@ public class CharacterScaredState : CharacterGroundedState
         _enterTime = Time.fixedTime;
     }
 
-    public override void OnExit(CharacterStates to)
+    public override void OnExit()
     {
-        base.OnExit(to);
+        base.OnExit();
         _anim.SetBool(ScaredAnim, false);
     }
 

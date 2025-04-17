@@ -245,7 +245,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 240
         width: 48
         height: 48
       alignment: 7
@@ -267,7 +267,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 192
+        y: 240
         width: 48
         height: 48
       alignment: 7
@@ -289,7 +289,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 192
+        y: 240
         width: 48
         height: 48
       alignment: 7
@@ -311,7 +311,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 144
-        y: 192
+        y: 240
         width: 48
         height: 48
       alignment: 7
@@ -333,7 +333,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 192
+        y: 240
         width: 48
         height: 48
       alignment: 7
@@ -355,7 +355,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 240
-        y: 192
+        y: 240
         width: 48
         height: 48
       alignment: 7
@@ -377,7 +377,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 288
-        y: 192
+        y: 240
         width: 48
         height: 48
       alignment: 7
@@ -399,7 +399,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 336
-        y: 192
+        y: 240
         width: 48
         height: 48
       alignment: 7
@@ -421,7 +421,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 144
+        y: 192
         width: 48
         height: 48
       alignment: 7
@@ -443,7 +443,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 144
+        y: 192
         width: 48
         height: 48
       alignment: 7
@@ -465,7 +465,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 144
+        y: 192
         width: 48
         height: 48
       alignment: 7
@@ -486,7 +486,7 @@ TextureImporter:
       name: Knight-Sheet_11
       rect:
         serializedVersion: 2
-        x: 144
+        x: 0
         y: 144
         width: 48
         height: 48
@@ -508,7 +508,7 @@ TextureImporter:
       name: Knight-Sheet_12
       rect:
         serializedVersion: 2
-        x: 192
+        x: 48
         y: 144
         width: 48
         height: 48
@@ -530,8 +530,8 @@ TextureImporter:
       name: Knight-Sheet_13
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
+        x: 96
+        y: 144
         width: 48
         height: 48
       alignment: 7
@@ -552,8 +552,8 @@ TextureImporter:
       name: Knight-Sheet_14
       rect:
         serializedVersion: 2
-        x: 48
-        y: 96
+        x: 144
+        y: 144
         width: 48
         height: 48
       alignment: 7
@@ -574,8 +574,8 @@ TextureImporter:
       name: Knight-Sheet_15
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
+        x: 192
+        y: 144
         width: 48
         height: 48
       alignment: 7
@@ -596,8 +596,8 @@ TextureImporter:
       name: Knight-Sheet_16
       rect:
         serializedVersion: 2
-        x: 144
-        y: 96
+        x: 240
+        y: 144
         width: 48
         height: 48
       alignment: 7
@@ -618,8 +618,8 @@ TextureImporter:
       name: Knight-Sheet_17
       rect:
         serializedVersion: 2
-        x: 192
-        y: 96
+        x: 288
+        y: 144
         width: 48
         height: 48
       alignment: 7
@@ -640,8 +640,8 @@ TextureImporter:
       name: Knight-Sheet_18
       rect:
         serializedVersion: 2
-        x: 240
-        y: 96
+        x: 336
+        y: 144
         width: 48
         height: 48
       alignment: 7
@@ -662,7 +662,7 @@ TextureImporter:
       name: Knight-Sheet_19
       rect:
         serializedVersion: 2
-        x: 288
+        x: 0
         y: 96
         width: 48
         height: 48
@@ -684,7 +684,7 @@ TextureImporter:
       name: Knight-Sheet_20
       rect:
         serializedVersion: 2
-        x: 336
+        x: 48
         y: 96
         width: 48
         height: 48
@@ -706,8 +706,8 @@ TextureImporter:
       name: Knight-Sheet_21
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
+        x: 96
+        y: 96
         width: 48
         height: 48
       alignment: 7
@@ -728,7 +728,7 @@ TextureImporter:
       name: Knight-Sheet_22
       rect:
         serializedVersion: 2
-        x: 48
+        x: 0
         y: 48
         width: 48
         height: 48
@@ -750,7 +750,7 @@ TextureImporter:
       name: Knight-Sheet_23
       rect:
         serializedVersion: 2
-        x: 96
+        x: 48
         y: 48
         width: 48
         height: 48
@@ -772,7 +772,7 @@ TextureImporter:
       name: Knight-Sheet_24
       rect:
         serializedVersion: 2
-        x: 144
+        x: 96
         y: 48
         width: 48
         height: 48
@@ -794,8 +794,8 @@ TextureImporter:
       name: Knight-Sheet_25
       rect:
         serializedVersion: 2
-        x: 192
-        y: 48
+        x: 0
+        y: 0
         width: 48
         height: 48
       alignment: 7
@@ -816,8 +816,8 @@ TextureImporter:
       name: Knight-Sheet_26
       rect:
         serializedVersion: 2
-        x: 240
-        y: 48
+        x: 48
+        y: 0
         width: 48
         height: 48
       alignment: 7
@@ -838,8 +838,8 @@ TextureImporter:
       name: Knight-Sheet_27
       rect:
         serializedVersion: 2
-        x: 288
-        y: 48
+        x: 96
+        y: 0
         width: 48
         height: 48
       alignment: 7
@@ -860,7 +860,7 @@ TextureImporter:
       name: Knight-Sheet_28
       rect:
         serializedVersion: 2
-        x: 0
+        x: 144
         y: 0
         width: 48
         height: 48
@@ -882,7 +882,7 @@ TextureImporter:
       name: Knight-Sheet_29
       rect:
         serializedVersion: 2
-        x: 48
+        x: 192
         y: 0
         width: 48
         height: 48
@@ -904,7 +904,7 @@ TextureImporter:
       name: Knight-Sheet_30
       rect:
         serializedVersion: 2
-        x: 96
+        x: 240
         y: 0
         width: 48
         height: 48
@@ -926,7 +926,7 @@ TextureImporter:
       name: Knight-Sheet_31
       rect:
         serializedVersion: 2
-        x: 144
+        x: 288
         y: 0
         width: 48
         height: 48
@@ -948,7 +948,7 @@ TextureImporter:
       name: Knight-Sheet_32
       rect:
         serializedVersion: 2
-        x: 192
+        x: 336
         y: 0
         width: 48
         height: 48
@@ -970,7 +970,7 @@ TextureImporter:
       name: Knight-Sheet_33
       rect:
         serializedVersion: 2
-        x: 240
+        x: 384
         y: 0
         width: 48
         height: 48
@@ -992,7 +992,7 @@ TextureImporter:
       name: Knight-Sheet_34
       rect:
         serializedVersion: 2
-        x: 288
+        x: 432
         y: 0
         width: 48
         height: 48
@@ -1014,7 +1014,7 @@ TextureImporter:
       name: Knight-Sheet_35
       rect:
         serializedVersion: 2
-        x: 336
+        x: 480
         y: 0
         width: 48
         height: 48
@@ -1036,7 +1036,7 @@ TextureImporter:
       name: Knight-Sheet_36
       rect:
         serializedVersion: 2
-        x: 384
+        x: 528
         y: 0
         width: 48
         height: 48
@@ -1058,7 +1058,7 @@ TextureImporter:
       name: Knight-Sheet_37
       rect:
         serializedVersion: 2
-        x: 432
+        x: 576
         y: 0
         width: 48
         height: 48
@@ -1080,7 +1080,7 @@ TextureImporter:
       name: Knight-Sheet_38
       rect:
         serializedVersion: 2
-        x: 480
+        x: 624
         y: 0
         width: 48
         height: 48
@@ -1102,7 +1102,7 @@ TextureImporter:
       name: Knight-Sheet_39
       rect:
         serializedVersion: 2
-        x: 528
+        x: 672
         y: 0
         width: 48
         height: 48
@@ -1116,160 +1116,6 @@ TextureImporter:
       bones: []
       spriteID: 19a0ea909c81796c0800000000000000
       internalID: -4136810480986617199
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight-Sheet_40
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 0
-        width: 48
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 15017743974e71f10800000000000000
-      internalID: 2240510548862505041
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight-Sheet_41
-      rect:
-        serializedVersion: 2
-        x: 624
-        y: 0
-        width: 48
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 667453f29422670f0800000000000000
-      internalID: -1119669759635011738
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight-Sheet_42
-      rect:
-        serializedVersion: 2
-        x: 672
-        y: 0
-        width: 48
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9c7049f9e097e5d30800000000000000
-      internalID: 4422104987838187465
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight-Sheet_43
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 0
-        width: 48
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 10ea84d827b645520800000000000000
-      internalID: 2689893017187823105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight-Sheet_44
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 48
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ee9feaf31598ef430800000000000000
-      internalID: 3818640516110547438
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight-Sheet_45
-      rect:
-        serializedVersion: 2
-        x: 816
-        y: 0
-        width: 48
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0823cd6d56931d530800000000000000
-      internalID: 3877943863701942912
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight-Sheet_46
-      rect:
-        serializedVersion: 2
-        x: 864
-        y: 0
-        width: 48
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a556000273ed3cc10800000000000000
-      internalID: 2072744581862024538
       vertices: []
       indices: 
       edges: []
@@ -1327,14 +1173,6 @@ TextureImporter:
       Knight-Sheet_38: 6133542115278992723
       Knight-Sheet_39: -4136810480986617199
       Knight-Sheet_4: -6031727949532310936
-      Knight-Sheet_40: 2240510548862505041
-      Knight-Sheet_41: -1119669759635011738
-      Knight-Sheet_42: 4422104987838187465
-      Knight-Sheet_43: 2689893017187823105
-      Knight-Sheet_44: 3818640516110547438
-      Knight-Sheet_45: 3877943863701942912
-      Knight-Sheet_46: 2072744581862024538
-      Knight-Sheet_47: -4974036271559609196
       Knight-Sheet_5: -4749644223382611146
       Knight-Sheet_6: 8748350960195395503
       Knight-Sheet_7: -3932984877469432071

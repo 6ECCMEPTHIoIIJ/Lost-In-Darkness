@@ -2,7 +2,7 @@
     "name": "Character Input",
     "maps": [
         {
-            "name": "Keyboard",
+            "name": "Gameplay",
             "id": "d8658d71-e412-4c94-b837-2808f7f4be75",
             "actions": [
                 {
@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "0e7c0285-006d-46c1-acfa-d6c376ee8e9e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -48,6 +57,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e051d5c2-1725-418d-a7c4-d0c884aca7a5",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

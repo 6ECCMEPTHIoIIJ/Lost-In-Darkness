@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
 
     public float MovementDirection { get; private set; }
     public bool FlipX { get; private set; }
+    
+    public bool IsJumping { get; private set; }
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -25,6 +27,11 @@ public class InputManager : MonoBehaviour
         {
             _stopTime = Time.fixedTime + stopDelay;
         }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        IsJumping = context.ReadValueAsButton();
     }
 
     private void FixedUpdate()

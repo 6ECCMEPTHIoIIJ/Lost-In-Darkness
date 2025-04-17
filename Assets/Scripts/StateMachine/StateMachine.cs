@@ -8,7 +8,7 @@ public interface IState<T>
     public void OnInitialize(StateMachine<T> sm);
     public void OnSetData(object data);
     public void OnEnter();
-    public void OnExit(T to);
+    public void OnExit();
     public void OnUpdate();
     public void OnFixedUpdate();
     public void SwitchState(T to);
@@ -54,7 +54,7 @@ public class StateMachine<T> : IStateMachine<T>
 
     public void OnSwitchState(T to)
     {
-        _currentState?.OnExit(to);
+        _currentState?.OnExit();
         _currentState = _states[Convert.ToInt32(to)];
         _currentState.OnEnter();
     }
@@ -79,7 +79,7 @@ public abstract class State<T> : IState<T>
         IsActive = true;
     }
 
-    public virtual void OnExit(T to)
+    public virtual void OnExit()
     {
         IsActive = false;
     }

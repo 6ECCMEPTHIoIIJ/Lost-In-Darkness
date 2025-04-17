@@ -82,7 +82,7 @@ MonoBehaviour:
     m_ActionName: 'Keyboard/New action[/Keyboard/a,/Keyboard/d]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Keyboard
+  m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!61 &160948557003136452
@@ -143,7 +143,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0
   m_GravityScale: 0
@@ -154,7 +154,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -260,33 +260,84 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7992022e1cd398448a5a84661bea7426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beginWalkingDelay: 0.3
-  beginWalkingDuration: 0.4
-  walkingMovementSpeed: 7
+  beginWalkingDuration: 0.2
+  beginWalkingMovementSpeed: 2.8125
+  walkingMovementSpeed: 9.375
   endWalkingDuration: 0.2
-  inAirMovementSpeed: 5
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 4.1542697
+      outSlope: 4.1542697
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.037315216
+    - serializedVersion: 3
+      time: 0.65045434
+      value: 0.9998362
+      inSlope: 0.013137009
+      outSlope: 0.013137009
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.00017547607
+      inSlope: -4.9566875
+      outSlope: -4.9566875
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.047217935
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jumpHeight: 5.25
+  jumpDuration: 1
+  inAirMovementSpeed: 6.25
   gravity: 9.81
-  maxFallSpeed: 9.81
+  maxFallSpeed: 14.715
   inactionDuration: 5
   scareDuration: 2
-  flipWalkingDuration: 0.6
+  flipWalkingDuration: 0.3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  groundDetects:
+  floorDetects:
   - serializedVersion: 2
     x: 0.03125
     y: 0.1
     width: 0
-    height: 0.2
+    height: -0.2
   - serializedVersion: 2
     x: -0.25
     y: 0.1
     width: 0
-    height: 0.2
+    height: -0.2
   - serializedVersion: 2
     x: 0.3125
     y: 0.1
+    width: 0
+    height: -0.2
+  ceilDetects:
+  - serializedVersion: 2
+    x: 0.03125
+    y: 1.65
+    width: 0
+    height: 0.2
+  - serializedVersion: 2
+    x: -0.25
+    y: 1.65
+    width: 0
+    height: 0.2
+  - serializedVersion: 2
+    x: 0.3125
+    y: 1.65
     width: 0
     height: 0.2
 --- !u!1 &8578480978983933129

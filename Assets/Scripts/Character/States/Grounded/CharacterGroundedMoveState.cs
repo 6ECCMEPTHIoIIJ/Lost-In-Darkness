@@ -24,7 +24,11 @@ public abstract class CharacterGroundedMoveState : CharacterGroundedState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        if (_input.FlipX != _flipX)
+        if (_input.IsJumping)
+        {
+            SwitchState(CharacterStates.Jumping);
+        }
+        else if (_input.FlipX != _flipX)
         {
             SwitchState(CharacterStates.FlipWalking);
         }

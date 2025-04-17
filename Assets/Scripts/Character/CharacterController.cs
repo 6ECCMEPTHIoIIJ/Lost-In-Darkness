@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -13,10 +14,13 @@ public class CharacterController : MonoBehaviour
     private Animator _anim;
     private InputManager _input;
 
-    [SerializeField] private float beginWalkingDelay = 0.2f;
     [SerializeField] private float beginWalkingDuration = 0.3f;
     [SerializeField] private float walkingMovementSpeed = 5f;
     [SerializeField] private float endWalkingDuration = 0.3f;
+
+    [SerializeField] private AnimationCurve jumpCurve;
+    [SerializeField] private float jumpHeight = 3f;
+    [SerializeField] private float jumpDuration = 1f;
 
     [SerializeField] private float inAirMovementSpeed = 3f;
     [SerializeField] private float gravity = 9.81f;
@@ -28,7 +32,10 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float flipWalkingDuration = 0.6f;
 
     [SerializeField] private LayerMask whatIsGround;
-    [SerializeField] private Rect[] groundDetects;
+
+    [SerializeField] private Rect[] floorDetects;
+
+    [SerializeField] private Rect[] ceilDetects;
 
     private void Awake()
     {
@@ -44,7 +51,8 @@ public class CharacterController : MonoBehaviour
             [CharacterStates.EndWalking] = new CharacterEndWalkingState(),
             [CharacterStates.FlipWalking] = new CharacterFlipWalkingState(),
             [CharacterStates.Scared] = new CharacterScaredState(),
-            [CharacterStates.InAir] = new CharacterInAirState(),
+            [CharacterStates.Falling] = new CharacterFallingState(),
+            [CharacterStates.Jumping] = new CharacterJumpingState(),
         });
     }
 
@@ -53,25 +61,26 @@ public class CharacterController : MonoBehaviour
         _sm.SetStateData(CharacterStates.Idle, new CharacterIdleState.Data
         {
             InactionDuration = inactionDuration,
-            WhatIsGround = whatIsGround,
-            GroundDetects = groundDetects,
+            WhatIsFloor = whatIsGround,
+            FloorDetects = floorDetects,
             Input = _input,
             Anim = _anim,
             Transform = transform,
+            Rb = _rb
         });
         _sm.SetStateData(CharacterStates.Scared, new CharacterScaredState.Data
         {
             ScareDuration = scareDuration,
-            WhatIsGround = whatIsGround,
-            GroundDetects = groundDetects,
+            WhatIsFloor = whatIsGround,
+            FloorDetects = floorDetects,
             Anim = _anim,
             Transform = transform,
         });
         _sm.SetStateData(CharacterStates.Walking, new CharacterWalkingState.Data
         {
             MovementSpeed = walkingMovementSpeed,
-            WhatIsGround = whatIsGround,
-            GroundDetects = groundDetects,
+            WhatIsFloor = whatIsGround,
+            FloorDetects = floorDetects,
             Input = _input,
             Anim = _anim,
             Transform = transform,
@@ -80,10 +89,9 @@ public class CharacterController : MonoBehaviour
         _sm.SetStateData(CharacterStates.BeginWalking, new CharacterBeginWalkingState.Data
         {
             MovementSpeed = walkingMovementSpeed,
-            BeginWalkingDelay = beginWalkingDelay,
             BeginWalkingDuration = beginWalkingDuration,
-            WhatIsGround = whatIsGround,
-            GroundDetects = groundDetects,
+            WhatIsFloor = whatIsGround,
+            FloorDetects = floorDetects,
             Input = _input,
             Anim = _anim,
             Transform = transform,
@@ -92,8 +100,8 @@ public class CharacterController : MonoBehaviour
         _sm.SetStateData(CharacterStates.EndWalking, new CharacterEndWalkingState.Data
         {
             EndWalkingDuration = endWalkingDuration,
-            WhatIsGround = whatIsGround,
-            GroundDetects = groundDetects,
+            WhatIsFloor = whatIsGround,
+            FloorDetects = floorDetects,
             Input = _input,
             Anim = _anim,
             Transform = transform,
@@ -102,24 +110,40 @@ public class CharacterController : MonoBehaviour
         _sm.SetStateData(CharacterStates.FlipWalking, new CharacterFlipWalkingState.Data
         {
             FlipDuration = flipWalkingDuration,
-            WhatIsGround = whatIsGround,
-            GroundDetects = groundDetects,
+            MovementSpeed = walkingMovementSpeed,
+            WhatIsFloor = whatIsGround,
+            FloorDetects = floorDetects,
             Input = _input,
             Anim = _anim,
             Transform = transform,
             Rb = _rb
         });
-        _sm.SetStateData(CharacterStates.InAir, new CharacterInAirState.Data
+        _sm.SetStateData(CharacterStates.Falling, new CharacterFallingState.Data
         {
             MovementSpeed = inAirMovementSpeed,
             Gravity = gravity,
             MaxFallSpeed = maxFallSpeed,
-            WhatIsGround = whatIsGround,
-            GroundDetects = groundDetects,
+            WhatIsFloor = whatIsGround,
+            FloorDetects = floorDetects,
             Input = _input,
             Anim = _anim,
             Transform = transform,
             Rb = _rb,
+        });
+        _sm.SetStateData(CharacterStates.Jumping, new CharacterJumpingState.Data
+        {
+            MovementSpeed = inAirMovementSpeed,
+            WhatIsFloor = whatIsGround,
+            FloorDetects = floorDetects,
+            WhatIsCeil = whatIsGround,
+            CeilDetects = ceilDetects,
+            Input = _input,
+            Transform = transform,
+            Rb = _rb,
+            JumpCurve = jumpCurve,
+            JumpDuration = jumpDuration,
+            JumpHeight = jumpHeight,
+            Anim = _anim,
         });
         _sm.OnSwitchState(CharacterStates.Idle);
     }
@@ -136,11 +160,20 @@ public class CharacterController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        foreach (var detectRay in groundDetects)
+        foreach (var detectRay in ceilDetects)
         {
-            Gizmos.DrawRay(transform.position + new Vector3(detectRay.x, detectRay.y),
+            Gizmos.DrawRay(transform.position + new Vector3(detectRay.x * transform.localScale.x, detectRay.y),
                 new Vector3(detectRay.size.x, detectRay.size.y));
         }
+
+        foreach (var detectRay in floorDetects)
+        {
+            Gizmos.DrawRay(transform.position + new Vector3(detectRay.x * transform.localScale.x, detectRay.y),
+                new Vector3(detectRay.size.x, detectRay.size.y));
+        }
+
+        Gizmos.DrawLine(transform.position + new Vector3(-0.25f, jumpHeight),
+            transform.position + new Vector3(0.3215f, jumpHeight));
     }
 }
 
@@ -152,6 +185,7 @@ public enum CharacterStates
     Walking,
     EndWalking,
     FlipWalking,
-    InAir,
+    Jumping,
+    Falling,
     Count,
 }

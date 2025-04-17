@@ -6,7 +6,6 @@ public class CharacterBeginWalkingState : CharacterGroundedMoveState
     private static readonly int BeginWalkingAnim = Animator.StringToHash("BeginWalking");
 
     private float _movementSpeed;
-    private float _beginWalkingDelay;
     private float _beginWalkingDuration;
     private float _enterTime;
     private float _movementDirection;
@@ -18,7 +17,7 @@ public class CharacterBeginWalkingState : CharacterGroundedMoveState
     public override void OnSetData(object data)
     {
         base.OnSetData(data);
-        (_movementSpeed, _beginWalkingDelay, _beginWalkingDuration, _input, _anim, _rb) = (Data)data;
+        (_movementSpeed, _beginWalkingDuration, _input, _anim, _rb) = (Data)data;
     }
 
     public override void OnEnter()
@@ -30,9 +29,9 @@ public class CharacterBeginWalkingState : CharacterGroundedMoveState
         _enterTime = Time.fixedTime;
     }
 
-    public override void OnExit(CharacterStates to)
+    public override void OnExit()
     {
-        base.OnExit(to);
+        base.OnExit();
         _anim.SetBool(BeginWalkingAnim, false);
     }
 
@@ -41,13 +40,10 @@ public class CharacterBeginWalkingState : CharacterGroundedMoveState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        if (Time.fixedTime - _enterTime > _beginWalkingDelay)
+        _rb.linearVelocityX = _movementDirection * _movementSpeed;
+        if (Time.fixedTime - _enterTime > _beginWalkingDuration)
         {
-            _rb.linearVelocityX = _movementDirection * _movementSpeed;
-            if (Time.fixedTime - _enterTime > _beginWalkingDuration)
-            {
-                SwitchState(CharacterStates.Walking);
-            }
+            SwitchState(CharacterStates.Walking);
         }
         else if (_input.MovementDirection == 0)
         {
@@ -58,17 +54,15 @@ public class CharacterBeginWalkingState : CharacterGroundedMoveState
     public new class Data : CharacterGroundedMoveState.Data
     {
         public float MovementSpeed;
-        public float BeginWalkingDelay;
         public float BeginWalkingDuration;
         public Animator Anim;
         public Rigidbody2D Rb;
 
-        public void Deconstruct(out float movementSpeed, out float beginWalkingDelay, out float beginWalkingDuration,
+        public void Deconstruct(out float movementSpeed, out float beginWalkingDuration,
             out InputManager input, out Animator anim, out Rigidbody2D rb)
         {
             input = Input;
             movementSpeed = MovementSpeed;
-            beginWalkingDelay = BeginWalkingDelay;
             beginWalkingDuration = BeginWalkingDuration;
             anim = Anim;
             rb = Rb;

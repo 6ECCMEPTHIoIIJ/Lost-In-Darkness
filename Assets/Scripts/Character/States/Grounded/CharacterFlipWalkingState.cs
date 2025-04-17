@@ -4,7 +4,7 @@ public class CharacterFlipWalkingState : CharacterGroundedState
 {
     private static readonly int FlipWalkingAnim = Animator.StringToHash("FlipWalking");
 
-
+    private float _movementSpeed;
     private float _flipDuration;
     private float _enterTime;
 
@@ -16,20 +16,19 @@ public class CharacterFlipWalkingState : CharacterGroundedState
     public override void OnSetData(object data)
     {
         base.OnSetData(data);
-        (_flipDuration, _anim, _input, _transform, _rb) = (Data)data;
+        (_transform, _movementSpeed, _flipDuration, _anim, _input, _rb) = (Data)data;
     }
 
     public override void OnEnter()
     {
         base.OnEnter();
         _anim.SetBool(FlipWalkingAnim, true);
-        _rb.linearVelocityX = 0f;
         _enterTime = Time.fixedTime;
     }
 
-    public override void OnExit(CharacterStates to)
+    public override void OnExit()
     {
-        base.OnExit(to);
+        base.OnExit();
         _anim.SetBool(FlipWalkingAnim, false);
         _transform.localScale = new Vector3(-_transform.localScale.x, _transform.localScale.y, _transform.localScale.z);
     }
@@ -39,30 +38,33 @@ public class CharacterFlipWalkingState : CharacterGroundedState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
+        _rb.linearVelocityX = _input.MovementDirection * _movementSpeed;
         if (Time.fixedTime - _enterTime > _flipDuration)
         {
             SwitchState(
                 _input.MovementDirection == 0
                     ? CharacterStates.Idle
-                    : CharacterStates.BeginWalking
+                    : CharacterStates.Walking
             );
         }
     }
 
     public new class Data : CharacterGroundedState.Data
     {
+        public float MovementSpeed;
         public float FlipDuration;
         public Animator Anim;
         public InputManager Input;
         public Rigidbody2D Rb;
 
-        public void Deconstruct(out float flipDuration, out Animator anim, out InputManager input,
-            out Transform transform, out Rigidbody2D rb)
+        public void Deconstruct(out Transform transform, out float movementSpeed, out float flipDuration,
+            out Animator anim, out InputManager input, out Rigidbody2D rb)
         {
+            transform = Transform;
+            movementSpeed = MovementSpeed;
             flipDuration = FlipDuration;
             anim = Anim;
             input = Input;
-            transform = Transform;
             rb = Rb;
         }
     }

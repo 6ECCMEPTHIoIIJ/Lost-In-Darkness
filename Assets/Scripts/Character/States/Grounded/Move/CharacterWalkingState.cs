@@ -6,7 +6,6 @@ public class CharacterWalkingState : CharacterGroundedMoveState
     private static readonly int WalkingAnim = Animator.StringToHash("Walking");
 
     private float _movementSpeed;
-    private float _movementDirection;
 
     private InputManager _input;
     private Animator _anim;
@@ -22,12 +21,11 @@ public class CharacterWalkingState : CharacterGroundedMoveState
     {
         base.OnEnter();
         _anim.SetBool(WalkingAnim, true);
-        _movementDirection = _input.MovementDirection;
     }
 
-    public override void OnExit(CharacterStates to)
+    public override void OnExit()
     {
-        base.OnExit(to);
+        base.OnExit();
         _anim.SetBool(WalkingAnim, false);
     }
 
@@ -37,7 +35,7 @@ public class CharacterWalkingState : CharacterGroundedMoveState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        _rb.linearVelocityX = _movementDirection * _movementSpeed;
+        _rb.linearVelocityX = _input.MovementDirection * _movementSpeed;
         if (_input.MovementDirection == 0)
         {
             SwitchState(CharacterStates.EndWalking);

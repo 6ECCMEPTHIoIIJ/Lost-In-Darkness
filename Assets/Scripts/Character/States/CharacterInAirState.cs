@@ -1,48 +1,19 @@
-using System;
 using UnityEngine;
 
-public class CharacterInAirState : State<CharacterStates>
+public abstract class CharacterInAirState : State<CharacterStates>
 {
-    private static readonly int FallingAnim = Animator.StringToHash("Falling");
-
     private float _movementSpeed;
-    private float _gravity;
-    private float _maxFallSpeed;
-
-    private Rect[] _groundDetects;
-    private LayerMask _whatIsGround;
+    private Rect[] _floorDetects;
+    private LayerMask _whatIsFloor;
 
     private Transform _transform;
-    private Rigidbody2D _rb;
     private InputManager _input;
-    private Animator _anim;
-
-    private Vector2 _groundPoint;
+    private Rigidbody2D _rb;
 
     public override void OnSetData(object data)
     {
         base.OnSetData(data);
-        (_movementSpeed, _gravity, _maxFallSpeed,
-            _groundDetects, _whatIsGround,
-            _transform, _rb, _input, _anim) = (Data)data;
-    }
-
-    public override void OnEnter()
-    {
-        base.OnEnter();
-        _anim.SetBool(FallingAnim, true);
-    }
-
-    public override void OnExit(CharacterStates to)
-    {
-        base.OnExit(to);
-        _anim.SetBool(FallingAnim, false);
-
-        if (to == CharacterStates.Idle)
-        {
-            _transform.position = new Vector2(_transform.position.x, _groundPoint.y);
-            _rb.linearVelocityY = 0;
-        }
+        (_movementSpeed, _floorDetects, _whatIsFloor, _rb, _input, _transform) = (Data)data;
     }
 
     public override void OnFixedUpdate()
@@ -51,24 +22,28 @@ public class CharacterInAirState : State<CharacterStates>
         if (!IsActive) return;
 
         _rb.linearVelocityX = _input.MovementDirection * _movementSpeed;
-        _rb.linearVelocityY = Mathf.Max(-_maxFallSpeed, _rb.linearVelocityY - _gravity);
-        if (IsGrounded(out _groundPoint))
+        if (_rb.linearVelocityY < 0.1f && IsTouchingFloor(out var groundPoint))
         {
-            SwitchState(CharacterStates.Idle);
+            _transform.position = new Vector2(_transform.position.x, groundPoint.y);
+            _rb.linearVelocityY = 0;
+            SwitchState(_input.MovementDirection == 0
+                ? CharacterStates.Idle
+                : CharacterStates.Walking
+            );
         }
     }
 
-    private bool IsGrounded(out Vector2 groundPoint)
+    private bool IsTouchingFloor(out Vector2 groundPoint)
     {
         var transform2D = new Vector2(_transform.position.x, _transform.position.y);
-        foreach (var groundDetect in _groundDetects)
+        foreach (var detect in _floorDetects)
         {
-            var scaledPosition = new Vector2(groundDetect.x * Mathf.Sign(_transform.localScale.x),
-                groundDetect.y * Mathf.Sign(_transform.localScale.y));
+            var scaledPosition = new Vector2(detect.x * Mathf.Sign(_transform.localScale.x),
+                detect.y * Mathf.Sign(_transform.localScale.y));
             var origin = transform2D + scaledPosition;
-            var direction = groundDetect.size.normalized;
-            var distance = groundDetect.size.magnitude;
-            var hit = Physics2D.Raycast(origin, direction, distance, _whatIsGround);
+            var direction = detect.size.normalized;
+            var distance = detect.size.magnitude;
+            var hit = Physics2D.Raycast(origin, direction, distance, _whatIsFloor);
             if (!hit) continue;
             groundPoint = hit.point;
             return true;
@@ -78,33 +53,26 @@ public class CharacterInAirState : State<CharacterStates>
         return false;
     }
 
-    public class Data
+    public abstract class Data
     {
         public float MovementSpeed;
-        public float Gravity;
-        public float MaxFallSpeed;
 
-        public Rect[] GroundDetects;
-        public LayerMask WhatIsGround;
+        public Rect[] FloorDetects;
+        public LayerMask WhatIsFloor;
 
-        public Transform Transform;
         public Rigidbody2D Rb;
         public InputManager Input;
-        public Animator Anim;
+        public Transform Transform;
 
-        public void Deconstruct(out float movementSpeed, out float gravity, out float maxFallSpeed,
-            out Rect[] groundDetects, out LayerMask whatIsGround, out Transform transform, out Rigidbody2D rb,
-            out InputManager input, out Animator anim)
+        public void Deconstruct(out float movementSpeed, out Rect[] floorDetects, out LayerMask whatIsFloor,
+            out Rigidbody2D rb, out InputManager input, out Transform transform)
         {
             movementSpeed = MovementSpeed;
-            gravity = Gravity;
-            maxFallSpeed = MaxFallSpeed;
-            groundDetects = GroundDetects;
-            whatIsGround = WhatIsGround;
-            transform = Transform;
+            floorDetects = FloorDetects;
+            whatIsFloor = WhatIsFloor;
             rb = Rb;
             input = Input;
-            anim = Anim;
+            transform = Transform;
         }
     }
 }

@@ -140,6 +140,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 106527208680613941, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
   m_PrefabInstance: {fileID: 1892681845}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1139255698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7970341539287925320, guid: 139b0ee658925464fb9b40f7b1e316a4, type: 3}
+  m_PrefabInstance: {fileID: 2948976320187334290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1139255702
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139255698}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d0096450caad05c4d9402a212d1919f7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1615073914
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: orthographic size
-      value: 5.9375
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_BackGroundColor.b
@@ -298,7 +325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.02662722
+      value: 0.21891418
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -306,11 +333,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9467456
+      value: 0.5604203
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.9973753
+      value: 0.9968847
       objectReference: {fileID: 0}
     - target: {fileID: 8492249380103608119, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_Enabled
@@ -19538,6 +19565,14 @@ PrefabInstance:
       propertyPath: beginWalkingDelay
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6726184703556257253, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
+      propertyPath: jumpCurve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726184703556257253, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
+      propertyPath: jumpCurve.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -19806,7 +19841,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7970341539287925320, guid: 139b0ee658925464fb9b40f7b1e316a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1139255702}
   m_SourcePrefab: {fileID: 100100000, guid: 139b0ee658925464fb9b40f7b1e316a4, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

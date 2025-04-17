@@ -54,7 +54,6 @@ public class CharacterFlipWalkingState : CharacterGroundedState
         public float MovementSpeed;
         public float FlipDuration;
         public Animator Anim;
-        public InputManager Input;
         public Rigidbody2D Rb;
 
         public void Deconstruct(out Transform transform, out float movementSpeed, out float flipDuration,

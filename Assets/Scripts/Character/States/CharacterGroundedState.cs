@@ -6,11 +6,12 @@ public abstract class CharacterGroundedState : State<CharacterStates>
     private LayerMask _whatIsFloor;
 
     private Transform _transform;
+    private InputManager _input;
 
     public override void OnSetData(object data)
     {
         base.OnSetData(data);
-        (_transform, _floorDetects, _whatIsFloor) = (Data)data;
+        (_transform, _floorDetects, _whatIsFloor, _input) = (Data)data;
     }
 
     public override void OnFixedUpdate()
@@ -18,7 +19,11 @@ public abstract class CharacterGroundedState : State<CharacterStates>
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        if (!IsTouchingFloor())
+        if (_input.IsJumping)
+        {
+            SwitchState(CharacterStates.Jumping);
+        }
+        else if (!IsTouchingFloor())
         {
             SwitchState(CharacterStates.Falling);
         }
@@ -47,12 +52,15 @@ public abstract class CharacterGroundedState : State<CharacterStates>
         public Transform Transform;
         public Rect[] FloorDetects;
         public LayerMask WhatIsFloor;
+        public InputManager Input;
 
-        public void Deconstruct(out Transform transform, out Rect[] floorDetects, out LayerMask whatIsFloor)
+        public void Deconstruct(out Transform transform, out Rect[] floorDetects, out LayerMask whatIsFloor,
+            out InputManager input)
         {
             transform = Transform;
             floorDetects = FloorDetects;
             whatIsFloor = WhatIsFloor;
+            input = Input;
         }
     }
 }

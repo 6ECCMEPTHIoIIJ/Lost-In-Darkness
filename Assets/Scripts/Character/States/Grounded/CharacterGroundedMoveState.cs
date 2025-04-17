@@ -23,12 +23,8 @@ public abstract class CharacterGroundedMoveState : CharacterGroundedState
     {
         base.OnFixedUpdate();
         if (!IsActive) return;
-
-        if (_input.IsJumping)
-        {
-            SwitchState(CharacterStates.Jumping);
-        }
-        else if (_input.FlipX != _flipX)
+        
+        if (_input.FlipX != _flipX)
         {
             SwitchState(CharacterStates.FlipWalking);
         }
@@ -36,7 +32,6 @@ public abstract class CharacterGroundedMoveState : CharacterGroundedState
 
     public new abstract class Data : CharacterGroundedState.Data
     {
-        public InputManager Input;
 
         public void Deconstruct(out InputManager input, out Transform transform)
         {

@@ -12,14 +12,10 @@ GameObject:
   - component: {fileID: 5232370868915389755}
   - component: {fileID: 160948557003136452}
   - component: {fileID: 4546764312561951944}
+  - component: {fileID: 3265101144157714928}
   - component: {fileID: 3685301073106033873}
   - component: {fileID: 2154192821235242597}
-  - component: {fileID: 744025180510762042}
-  - component: {fileID: 1750917106530923462}
-  - component: {fileID: 8492361078440524813}
-  - component: {fileID: 8390943746569991082}
-  - component: {fileID: 4757458708156797860}
-  - component: {fileID: 5594391559299654854}
+  - component: {fileID: 6726184703556257253}
   m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
@@ -162,76 +158,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!95 &3685301073106033873
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708404838629947354}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b1ebba7ce02632547ab972cdf240a6a1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2154192821235242597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708404838629947354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb6a71fb07494267a649fc6caaed86a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopDelay: 0.1
---- !u!114 &744025180510762042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708404838629947354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29e61be42a142fd818277ad701495bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkingSpeed: 7
-  slowWalkingSpeed: 2
-  beginWalkingDuration: 0.3
-  beginSlowWalkingDuration: 0.2
-  endWalkingDuration: 0.3
-  endSlowWalkingDuration: 0.1
-  flipDuration: 0.5
-  inAirSpeed: 4
-  fallingSpeed: 19.6
-  gravity: 19.6
---- !u!114 &1750917106530923462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708404838629947354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7992022e1cd398448a5a84661bea7426, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!212 &8492361078440524813
+--- !u!212 &3265101144157714928
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -286,7 +213,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8390943746569991082
+--- !u!95 &3685301073106033873
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708404838629947354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b1ebba7ce02632547ab972cdf240a6a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2154192821235242597
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -295,63 +244,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 1708404838629947354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eda19e4e8c244c33bd74fef13083c963, type: 3}
+  m_Script: {fileID: 11500000, guid: eb6a71fb07494267a649fc6caaed86a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundDetectRays:
+  stopDelay: 0.1
+--- !u!114 &6726184703556257253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708404838629947354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7992022e1cd398448a5a84661bea7426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beginWalkingDelay: 0.3
+  beginWalkingDuration: 0.4
+  walkingMovementSpeed: 7
+  endWalkingDuration: 0.2
+  inAirMovementSpeed: 5
+  gravity: 9.81
+  maxFallSpeed: 9.81
+  inactionDuration: 5
+  scareDuration: 2
+  flipWalkingDuration: 0.6
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
+  groundDetects:
   - serializedVersion: 2
     x: 0.03125
     y: 0.1
     width: 0
-    height: -0.2
+    height: 0.2
   - serializedVersion: 2
     x: -0.25
     y: 0.1
     width: 0
-    height: -0.2
+    height: 0.2
   - serializedVersion: 2
     x: 0.3125
     y: 0.1
     width: 0
-    height: -0.2
-  groundDetectColor: {r: 0, g: 1, b: 0.06863189, a: 1}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
---- !u!114 &4757458708156797860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708404838629947354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f6b0031e16a4a388f0c04595ec23820, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <IdleAnimation>k__BackingField: {fileID: 7400000, guid: d8f5ea03808a6714392c1865e8324675, type: 2}
-  <ScaredAnimation>k__BackingField: {fileID: 7400000, guid: 71f590e9b22eb5c47a3c3d110081bb4f, type: 2}
-  <BeginWalkingAnimation>k__BackingField: {fileID: 7400000, guid: 25872baf1166e8d48b989bc8bdac8ac4, type: 2}
-  <WalkingAnimation>k__BackingField: {fileID: 7400000, guid: c3f5ff2c5091ffd4f8c3e47408de79d6, type: 2}
-  <EndWalkingAnimation>k__BackingField: {fileID: 7400000, guid: 3a06f3cb8d997c448902326ea7e43ad9, type: 2}
-  <FlipAnimation>k__BackingField: {fileID: 7400000, guid: 7d20740a2c535344e8eab93404072b5b, type: 2}
-  <JumpingAnimation>k__BackingField: {fileID: 7400000, guid: d8f5ea03808a6714392c1865e8324675, type: 2}
-  <FallingAnimation>k__BackingField: {fileID: 7400000, guid: d8f5ea03808a6714392c1865e8324675, type: 2}
---- !u!114 &5594391559299654854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708404838629947354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a84f9fb260bd4be4b3cb061dea4087c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scareCooldown: 5
-  scareDuration: 1.8
+    height: 0.2
 --- !u!1 &8578480978983933129
 GameObject:
   m_ObjectHideFlags: 0

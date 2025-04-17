@@ -271,7 +271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: orthographic size
-      value: 9.625
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_BackGroundColor.b
@@ -287,7 +287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.2090909
+      value: 0.032163743
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -295,11 +295,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.58181816
+      value: 0.9356725
       objectReference: {fileID: 0}
     - target: {fileID: 7818551536794011402, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.99676377
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8492249380103608119, guid: b0559877bcd655a40b8d8166931e18b7, type: 3}
       propertyPath: m_Enabled
@@ -19413,7 +19413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1451599422878987873, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.65625
+      value: -6.73
       objectReference: {fileID: 0}
     - target: {fileID: 1451599422878987873, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19478,6 +19478,22 @@ PrefabInstance:
     - target: {fileID: 5377540289489840103, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
       propertyPath: m_PointLightOuterRadius
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726184703556257253, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
+      propertyPath: beginWalkingDelay
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726184703556257253, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
+      propertyPath: groundDetects.Array.data[0].height
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726184703556257253, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
+      propertyPath: groundDetects.Array.data[1].height
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726184703556257253, guid: 0d00ceafc15138d4b96c2340454d1b17, type: 3}
+      propertyPath: groundDetects.Array.data[2].height
+      value: -0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

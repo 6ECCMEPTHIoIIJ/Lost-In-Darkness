@@ -1,26 +1,39 @@
 using System;
+using UnityEngine;
 
-public class CharacterBeginWalkingState : CharacterState
+public class CharacterBeginWalkingState : CharacterGroundedMoveState
 {
-    public override void OnInitialize()
+    private static readonly int BeginWalkingAnim = Animator.StringToHash("BeginWalking");
+
+    private float _movementSpeed;
+    private float _beginWalkingDelay;
+    private float _beginWalkingDuration;
+    private float _enterTime;
+    private float _movementDirection;
+
+    private InputManager _input;
+    private Animator _anim;
+    private Rigidbody2D _rb;
+
+    public override void OnSetData(object data)
     {
-        base.OnInitialize();
-        Controller.Physics.WalkingEvent += () => StateManager.OnSwitchState(CharacterStates.Walking);
+        base.OnSetData(data);
+        (_movementSpeed, _beginWalkingDelay, _beginWalkingDuration, _input, _anim, _rb) = (Data)data;
     }
 
     public override void OnEnter()
     {
         base.OnEnter();
+        _anim.SetBool(BeginWalkingAnim, true);
+        _rb.linearVelocityX = 0f;
+        _movementDirection = _input.MovementDirection;
+        _enterTime = Time.fixedTime;
+    }
 
-        var beginWalkingOffset = Controller.Animation.CurrentAnimationId switch
-        {
-            CharacterAnimations.Flip => Controller.Animation.BeginWalkingAnimation.length * 0.2f,
-            CharacterAnimations.EndWalking => Controller.Animation.CurrentAnimationDurationLeft,
-            _ => 0f,
-        };
-        Controller.Animation.OnSwitchAnimation(CharacterAnimations.BeginWalking, beginWalkingOffset);
-        Controller.Physics.MovementDirection = Controller.Input.MovementDirection;
-        Controller.Physics.OnBeginWalking();
+    public override void OnExit(CharacterStates to)
+    {
+        base.OnExit(to);
+        _anim.SetBool(BeginWalkingAnim, false);
     }
 
     public override void OnFixedUpdate()
@@ -28,14 +41,37 @@ public class CharacterBeginWalkingState : CharacterState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        if (Controller.Input.MovementDirection == 0)
+        if (Time.fixedTime - _enterTime > _beginWalkingDelay)
         {
-            StateManager.OnSwitchState(CharacterStates.EndWalking);
+            _rb.linearVelocityX = _movementDirection * _movementSpeed;
+            if (Time.fixedTime - _enterTime > _beginWalkingDuration)
+            {
+                SwitchState(CharacterStates.Walking);
+            }
         }
-        else
+        else if (_input.MovementDirection == 0)
         {
-            Controller.Physics.MovementDirection = Controller.Input.MovementDirection;
-            Controller.Physics.OnBeginWalking();
+            SwitchState(CharacterStates.EndWalking);
+        }
+    }
+
+    public new class Data : CharacterGroundedMoveState.Data
+    {
+        public float MovementSpeed;
+        public float BeginWalkingDelay;
+        public float BeginWalkingDuration;
+        public Animator Anim;
+        public Rigidbody2D Rb;
+
+        public void Deconstruct(out float movementSpeed, out float beginWalkingDelay, out float beginWalkingDuration,
+            out InputManager input, out Animator anim, out Rigidbody2D rb)
+        {
+            input = Input;
+            movementSpeed = MovementSpeed;
+            beginWalkingDelay = BeginWalkingDelay;
+            beginWalkingDuration = BeginWalkingDuration;
+            anim = Anim;
+            rb = Rb;
         }
     }
 }

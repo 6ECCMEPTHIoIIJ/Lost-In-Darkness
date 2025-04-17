@@ -1,27 +1,33 @@
-using System;
 using UnityEngine;
 
-public class CharacterEndWalkingState : CharacterState
+public class CharacterEndWalkingState : CharacterGroundedMoveState
 {
-    public override void OnInitialize()
+    private static readonly int EndWalkingAnim = Animator.StringToHash("EndWalking");
+
+    private float _endWalkingDuration;
+    private float _enterTime;
+
+    private Animator _anim;
+    private Rigidbody2D _rb;
+
+    public override void OnSetData(object data)
     {
-        base.OnInitialize();
-        Controller.Physics.IdleEvent += () => StateManager.OnSwitchState(CharacterStates.Idle);
+        base.OnSetData(data);
+        (_endWalkingDuration, _anim, _rb) = (Data)data;
     }
-    
+
     public override void OnEnter()
     {
         base.OnEnter();
+        _anim.SetBool(EndWalkingAnim, true);
+        _rb.linearVelocityX = 0f;
+        _enterTime = Time.fixedTime;
+    }
 
-        var endWalkingOffset = Controller.Animation.CurrentAnimationId switch
-        {
-            CharacterAnimations.Walking => Controller.Animation.EndWalkingAnimation.length * 0.6f,
-            CharacterAnimations.BeginWalking => Controller.Animation.CurrentAnimationDurationLeft,
-            _ => 0f,
-        };
-        Controller.Animation.OnSwitchAnimation(CharacterAnimations.EndWalking, endWalkingOffset);
-        Controller.Physics.MovementDirection = Controller.Input.MovementDirection;
-        Controller.Physics.OnEndWalking();
+    public override void OnExit(CharacterStates to)
+    {
+        base.OnExit(to);
+        _anim.SetBool(EndWalkingAnim, false);
     }
 
     public override void OnFixedUpdate()
@@ -29,13 +35,23 @@ public class CharacterEndWalkingState : CharacterState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        if (Controller.Input.MovementDirection != 0)
+        if (Time.fixedTime - _enterTime > _endWalkingDuration)
         {
-            StateManager.OnSwitchState(CharacterStates.BeginWalking);
+            SwitchState(CharacterStates.Idle);
         }
-        else
+    }
+
+    public new class Data : CharacterGroundedMoveState.Data
+    {
+        public float EndWalkingDuration;
+        public Animator Anim;
+        public Rigidbody2D Rb;
+
+        public void Deconstruct(out float endWalkingDuration, out Animator anim, out Rigidbody2D rb)
         {
-            Controller.Physics.OnEndWalking();
+            endWalkingDuration = EndWalkingDuration;
+            anim = Anim;
+            rb = Rb;
         }
     }
 }

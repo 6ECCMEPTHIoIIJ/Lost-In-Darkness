@@ -1,16 +1,33 @@
-public class CharacterIdleState : CharacterState
+using UnityEngine;
+
+public class CharacterIdleState : CharacterGroundedState
 {
-    public override void OnInitialize()
-    {
-        base.OnInitialize();
-        Controller.Effects.ScaredEvent += () => StateManager.OnSwitchState(CharacterStates.Scared);
-    }
+    private static readonly int IdleAnim = Animator.StringToHash("Idle");
+
+    private float _inactionDuration;
+    private float _enterTime;
+
+    private InputManager _input;
+    private Animator _anim;
+
 
     public override void OnEnter()
     {
         base.OnEnter();
-        Controller.Animation.OnSwitchAnimation(CharacterAnimations.Idle);
-        Controller.Effects.OnBeginDaring();
+        _anim.SetBool(IdleAnim, true);
+        _enterTime = Time.fixedTime;
+    }
+
+    public override void OnExit(CharacterStates to)
+    {
+        base.OnExit(to);
+        _anim.SetBool(IdleAnim, false);
+    }
+
+    public override void OnSetData(object data)
+    {
+        base.OnSetData(data);
+        (_inactionDuration, _input, _anim) = (Data)data;
     }
 
     public override void OnFixedUpdate()
@@ -18,13 +35,26 @@ public class CharacterIdleState : CharacterState
         base.OnFixedUpdate();
         if (!IsActive) return;
 
-        if (Controller.Input.IsMoving)
+        if (_input.MovementDirection != 0)
         {
-            StateManager.OnSwitchState(CharacterStates.BeginWalking);
+            SwitchState(CharacterStates.BeginWalking);
         }
-        else
+        else if (Time.fixedTime - _enterTime > _inactionDuration)
         {
-            Controller.Effects.OnDare();
+            SwitchState(CharacterStates.Scared);
+        }
+    }
+
+    public new class Data : CharacterGroundedMoveState.Data
+    {
+        public float InactionDuration;
+        public Animator Anim;
+
+        public void Deconstruct(out float inactionDuration, out InputManager input, out Animator anim)
+        {
+            inactionDuration = InactionDuration;
+            input = Input;
+            anim = Anim;
         }
     }
 }

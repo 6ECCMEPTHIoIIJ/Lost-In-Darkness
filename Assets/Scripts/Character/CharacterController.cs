@@ -1,47 +1,157 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterPhysicsManager))]
-[RequireComponent(typeof(CharacterInputManager))]
-[RequireComponent(typeof(CharacterCollisionsDetector))]
-[RequireComponent(typeof(CharacterAnimationManager))]
-[RequireComponent(typeof(CharacterEffectsManager))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(InputManager))]
 public class CharacterController : MonoBehaviour
 {
-    private CharacterStateManager _stateManager;
+    private readonly StateMachine<CharacterStates> _sm = new();
 
-    public Transform Transform { get; private set; }
-    public CharacterAnimationManager Animation { get; private set; }
-    public CharacterPhysicsManager Physics { get; private set; }
-    public CharacterInputManager Input { get; private set; }
-    public CharacterCollisionsDetector Collisions { get; private set; }
-    public CharacterEffectsManager Effects { get; private set; }
+    private Rigidbody2D _rb;
+    private Animator _anim;
+    private InputManager _input;
+
+    [SerializeField] private float beginWalkingDelay = 0.2f;
+    [SerializeField] private float beginWalkingDuration = 0.3f;
+    [SerializeField] private float walkingMovementSpeed = 5f;
+    [SerializeField] private float endWalkingDuration = 0.3f;
+
+    [SerializeField] private float inAirMovementSpeed = 3f;
+    [SerializeField] private float gravity = 9.81f;
+    [SerializeField] private float maxFallSpeed = 18.62f;
+
+    [SerializeField] private float inactionDuration = 5f;
+    [SerializeField] private float scareDuration = 2f;
+
+    [SerializeField] private float flipWalkingDuration = 0.6f;
+
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private Rect[] groundDetects;
 
     private void Awake()
     {
-        Transform = transform;
-        Physics = GetComponent<CharacterPhysicsManager>();
-        Input = GetComponent<CharacterInputManager>();
-        Animation = GetComponent<CharacterAnimationManager>();
-        Collisions = GetComponent<CharacterCollisionsDetector>();
-        Effects = GetComponent<CharacterEffectsManager>();
+        _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
+        _input = GetComponent<InputManager>();
 
-        _stateManager = new CharacterStateManager();
+        _sm.Initialize(new SortedDictionary<CharacterStates, IState<CharacterStates>>
+        {
+            [CharacterStates.Idle] = new CharacterIdleState(),
+            [CharacterStates.Walking] = new CharacterWalkingState(),
+            [CharacterStates.BeginWalking] = new CharacterBeginWalkingState(),
+            [CharacterStates.EndWalking] = new CharacterEndWalkingState(),
+            [CharacterStates.FlipWalking] = new CharacterFlipWalkingState(),
+            [CharacterStates.Scared] = new CharacterScaredState(),
+            [CharacterStates.InAir] = new CharacterInAirState(),
+        });
     }
 
     private void Start()
     {
-        _stateManager.Controller = this;
-        _stateManager.OnInitialize();
-        _stateManager.OnSwitchState(CharacterStates.Idle);
+        _sm.SetStateData(CharacterStates.Idle, new CharacterIdleState.Data
+        {
+            InactionDuration = inactionDuration,
+            WhatIsGround = whatIsGround,
+            GroundDetects = groundDetects,
+            Input = _input,
+            Anim = _anim,
+            Transform = transform,
+        });
+        _sm.SetStateData(CharacterStates.Scared, new CharacterScaredState.Data
+        {
+            ScareDuration = scareDuration,
+            WhatIsGround = whatIsGround,
+            GroundDetects = groundDetects,
+            Anim = _anim,
+            Transform = transform,
+        });
+        _sm.SetStateData(CharacterStates.Walking, new CharacterWalkingState.Data
+        {
+            MovementSpeed = walkingMovementSpeed,
+            WhatIsGround = whatIsGround,
+            GroundDetects = groundDetects,
+            Input = _input,
+            Anim = _anim,
+            Transform = transform,
+            Rb = _rb
+        });
+        _sm.SetStateData(CharacterStates.BeginWalking, new CharacterBeginWalkingState.Data
+        {
+            MovementSpeed = walkingMovementSpeed,
+            BeginWalkingDelay = beginWalkingDelay,
+            BeginWalkingDuration = beginWalkingDuration,
+            WhatIsGround = whatIsGround,
+            GroundDetects = groundDetects,
+            Input = _input,
+            Anim = _anim,
+            Transform = transform,
+            Rb = _rb
+        });
+        _sm.SetStateData(CharacterStates.EndWalking, new CharacterEndWalkingState.Data
+        {
+            EndWalkingDuration = endWalkingDuration,
+            WhatIsGround = whatIsGround,
+            GroundDetects = groundDetects,
+            Input = _input,
+            Anim = _anim,
+            Transform = transform,
+            Rb = _rb
+        });
+        _sm.SetStateData(CharacterStates.FlipWalking, new CharacterFlipWalkingState.Data
+        {
+            FlipDuration = flipWalkingDuration,
+            WhatIsGround = whatIsGround,
+            GroundDetects = groundDetects,
+            Input = _input,
+            Anim = _anim,
+            Transform = transform,
+            Rb = _rb
+        });
+        _sm.SetStateData(CharacterStates.InAir, new CharacterInAirState.Data
+        {
+            MovementSpeed = inAirMovementSpeed,
+            Gravity = gravity,
+            MaxFallSpeed = maxFallSpeed,
+            WhatIsGround = whatIsGround,
+            GroundDetects = groundDetects,
+            Input = _input,
+            Anim = _anim,
+            Transform = transform,
+            Rb = _rb,
+        });
+        _sm.OnSwitchState(CharacterStates.Idle);
     }
 
     private void Update()
     {
-        _stateManager.OnUpdate();
+        _sm.Update();
     }
 
     private void FixedUpdate()
     {
-        _stateManager.OnFixedUpdate();
+        _sm.FixedUpdate();
     }
+
+    private void OnDrawGizmos()
+    {
+        foreach (var detectRay in groundDetects)
+        {
+            Gizmos.DrawRay(transform.position + new Vector3(detectRay.x, detectRay.y),
+                new Vector3(detectRay.size.x, detectRay.size.y));
+        }
+    }
+}
+
+public enum CharacterStates
+{
+    Idle = 0,
+    Scared,
+    BeginWalking,
+    Walking,
+    EndWalking,
+    FlipWalking,
+    InAir,
+    Count,
 }

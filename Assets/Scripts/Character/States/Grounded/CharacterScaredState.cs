@@ -1,23 +1,53 @@
-public class CharacterScaredState : CharacterState
+using UnityEngine;
+
+public class CharacterScaredState : CharacterGroundedState
 {
-    public override void OnInitialize()
+    private static readonly int ScaredAnim = Animator.StringToHash("Scared");
+
+    private float _scareDuration;
+    private float _enterTime;
+
+    private Animator _anim;
+
+    public override void OnSetData(object data)
     {
-        base.OnInitialize();
-        Controller.Effects.DaredEvent += () => StateManager.OnSwitchState(CharacterStates.Idle);
+        base.OnSetData(data);
+        (_scareDuration, _anim) = (Data)data;
     }
-    
+
     public override void OnEnter()
     {
         base.OnEnter();
-        Controller.Animation.OnSwitchAnimation(CharacterAnimations.Scared);
-        Controller.Effects.OnBeginScaring();
+        _anim.SetBool(ScaredAnim, true);
+        _enterTime = Time.fixedTime;
+    }
+
+    public override void OnExit(CharacterStates to)
+    {
+        base.OnExit(to);
+        _anim.SetBool(ScaredAnim, false);
     }
 
     public override void OnFixedUpdate()
     {
         base.OnFixedUpdate();
         if (!IsActive) return;
-        
-        Controller.Effects.OnScare();
+
+        if (Time.fixedTime - _enterTime > _scareDuration)
+        {
+            SwitchState(CharacterStates.Idle);
+        }
+    }
+
+    public new class Data : CharacterGroundedState.Data
+    {
+        public float ScareDuration;
+        public Animator Anim;
+
+        public void Deconstruct(out float scaredDuration, out Animator anim)
+        {
+            scaredDuration = ScareDuration;
+            anim = Anim;
+        }
     }
 }

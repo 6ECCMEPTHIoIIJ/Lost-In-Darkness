@@ -71,6 +71,7 @@ public class CharacterController : MonoBehaviour
             ScareDuration = scareDuration,
             WhatIsFloor = whatIsGround,
             FloorDetects = floorDetects,
+            Input = _input,
             Anim = _anim,
             Transform = transform,
         });

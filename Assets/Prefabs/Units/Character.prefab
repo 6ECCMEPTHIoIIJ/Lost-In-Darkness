@@ -261,7 +261,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beginWalkingDuration: 0.2
-  beginWalkingMovementSpeed: 2.8125
   walkingMovementSpeed: 9.375
   endWalkingDuration: 0.2
   jumpCurve:

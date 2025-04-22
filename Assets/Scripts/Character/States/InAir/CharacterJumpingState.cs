@@ -4,33 +4,36 @@ public class CharacterJumpingState : CharacterInAirState
 {
     private static readonly int JumpingAnim = Animator.StringToHash("Jumping");
 
-
-    private AnimationCurve _jumpCurve;
-    private float _jumpHeight;
-    private float _jumpDuration;
-
     private Rect[] _ceilDetects;
     private LayerMask _whatIsCeil;
 
-    private Transform _transform;
+    private Transform _tr;
     private Rigidbody2D _rb;
     private Animator _anim;
+    private IJumpBrain _jumpBr;
 
-    private float _enterTime;
+    private float _jumpSpeed;
 
-    public override void OnSetData(object data)
+    protected override CharacterStates Id => CharacterStates.Jumping;
+
+    public override void OnSetData(in CharacterStateData data)
     {
-        base.OnSetData(data);
-        (_jumpCurve, _jumpHeight, _jumpDuration,
-            _transform, _rb, _anim,
-            _ceilDetects, _whatIsCeil) = (Data)data;
+        base.OnSetData(in data);
+        _jumpBr = data.input;
+        _tr = data.tr;
+        _rb = data.rb;
+        _anim = data.anim;
+        _ceilDetects = data.ceilDetects;
+        _whatIsCeil = data.whatIsGround;
+        _jumpSpeed = Mathf.Sqrt(2f * data.jumpHeight * -Physics2D.gravity.y);
     }
 
     public override void OnEnter()
     {
         base.OnEnter();
         _anim.SetBool(JumpingAnim, true);
-        _enterTime = Time.fixedTime;
+        _rb.linearVelocityY = _jumpSpeed;
+        _jumpBr.OnJumpPerformed();
     }
 
     public override void OnExit()
@@ -41,16 +44,16 @@ public class CharacterJumpingState : CharacterInAirState
 
     public override void OnFixedUpdate()
     {
-        _rb.linearVelocityY =
-            (_jumpCurve.Evaluate((Time.fixedTime - _enterTime) / _jumpDuration) -
-             _jumpCurve.Evaluate((Time.fixedTime - Time.fixedDeltaTime - _enterTime) / _jumpDuration))
-            / Time.fixedDeltaTime * _jumpDuration * _jumpHeight;
-
         base.OnFixedUpdate();
-        if (!IsActive) return;
+        if (!Active) return;
 
-        if (Time.fixedTime - _enterTime > _jumpDuration
-            || _rb.linearVelocityY > 0 && IsTouchingCeil())
+        _rb.linearVelocityY += Physics2D.gravity.y * Time.fixedDeltaTime;
+        if (!_jumpBr.JumpHold)
+        {
+            _rb.linearVelocityY /= Mathf.Sqrt(2f);
+            SwitchState(CharacterStates.Falling);
+        }
+        else if (_rb.linearVelocityY < 0f || _rb.linearVelocityY > 0f && IsTouchingCeil())
         {
             SwitchState(CharacterStates.Falling);
         }
@@ -58,11 +61,11 @@ public class CharacterJumpingState : CharacterInAirState
 
     private bool IsTouchingCeil()
     {
-        var transform2D = new Vector2(_transform.position.x, _transform.position.y);
+        var transform2D = new Vector2(_tr.position.x, _tr.position.y);
         foreach (var detect in _ceilDetects)
         {
-            var scaledPosition = new Vector2(detect.x * Mathf.Sign(_transform.localScale.x),
-                detect.y * Mathf.Sign(_transform.localScale.y));
+            var scaledPosition = new Vector2(detect.x * Mathf.Sign(_tr.localScale.x),
+                detect.y * Mathf.Sign(_tr.localScale.y));
             var origin = transform2D + scaledPosition;
             var direction = detect.size.normalized;
             var distance = detect.size.magnitude;
@@ -72,29 +75,5 @@ public class CharacterJumpingState : CharacterInAirState
         }
 
         return false;
-    }
-
-    public new class Data : CharacterInAirState.Data
-    {
-        public AnimationCurve JumpCurve;
-        public float JumpHeight;
-        public float JumpDuration;
-        public Animator Anim;
-        public Rect[] CeilDetects;
-        public LayerMask WhatIsCeil;
-
-        public void Deconstruct(out AnimationCurve jumpCurve, out float jumpHeight, out float jumpDuration,
-            out Transform transform, out Rigidbody2D rb, out Animator anim, out Rect[] ceilDetects,
-            out LayerMask whatIsCeil)
-        {
-            jumpCurve = JumpCurve;
-            jumpHeight = JumpHeight;
-            jumpDuration = JumpDuration;
-            transform = Transform;
-            rb = Rb;
-            anim = Anim;
-            ceilDetects = CeilDetects;
-            whatIsCeil = WhatIsCeil;
-        }
     }
 }

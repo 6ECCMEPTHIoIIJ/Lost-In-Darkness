@@ -80,6 +80,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 70815460-ee72-44da-a307-98a84a15736f
     m_ActionName: 'Keyboard/New action[/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2154192821235242597}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0e7c0285-006d-46c1-acfa-d6c376ee8e9e
+    m_ActionName: 'Gameplay/Jump[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -247,7 +263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6a71fb07494267a649fc6caaed86a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopDelay: 0.1
+  holdingJump:
+    duration: 0.1
 --- !u!114 &6726184703556257253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,85 +277,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7992022e1cd398448a5a84661bea7426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beginWalkingDuration: 0.2
-  walkingMovementSpeed: 9.375
-  endWalkingDuration: 0.2
-  jumpCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 4.1542697
-      outSlope: 4.1542697
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.037315216
-    - serializedVersion: 3
-      time: 0.65045434
-      value: 0.9998362
-      inSlope: 0.013137009
-      outSlope: 0.013137009
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0.00017547607
-      inSlope: -4.9566875
-      outSlope: -4.9566875
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.047217935
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  jumpHeight: 5.25
-  jumpDuration: 1
-  inAirMovementSpeed: 6.25
-  gravity: 9.81
-  maxFallSpeed: 14.715
-  inactionDuration: 5
-  scareDuration: 2
-  flipWalkingDuration: 0.3
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 8
-  floorDetects:
-  - serializedVersion: 2
-    x: 0.03125
-    y: 0.1
-    width: 0
-    height: -0.2
-  - serializedVersion: 2
-    x: -0.25
-    y: 0.1
-    width: 0
-    height: -0.2
-  - serializedVersion: 2
-    x: 0.3125
-    y: 0.1
-    width: 0
-    height: -0.2
-  ceilDetects:
-  - serializedVersion: 2
-    x: 0.03125
-    y: 1.65
-    width: 0
-    height: 0.2
-  - serializedVersion: 2
-    x: -0.25
-    y: 1.65
-    width: 0
-    height: 0.2
-  - serializedVersion: 2
-    x: 0.3125
-    y: 1.65
-    width: 0
-    height: 0.2
+  data:
+    rb: {fileID: 0}
+    anim: {fileID: 0}
+    input: {fileID: 0}
+    tr: {fileID: 0}
+    inAirSpeed: 6.25
+    maxFallSpeed: 39.24
+    jumpHeight: 5.25
+    runSpeed: 9.375
+    startRunDuration: 0.2
+    endRunDuration: 0.2
+    flipDuration: 0.2
+    waitDuration: 5
+    scareDuration: 1.4
+    whatIsGround:
+      serializedVersion: 2
+      m_Bits: 8
+    floorDetects:
+    - serializedVersion: 2
+      x: 0.03125
+      y: 0.1
+      width: 0
+      height: -0.2
+    - serializedVersion: 2
+      x: -0.25
+      y: 0.1
+      width: 0
+      height: -0.2
+    - serializedVersion: 2
+      x: 0.3125
+      y: 0.1
+      width: 0
+      height: -0.2
+    ceilDetects:
+    - serializedVersion: 2
+      x: 0.03125
+      y: 1.65
+      width: 0
+      height: 0.2
+    - serializedVersion: 2
+      x: -0.25
+      y: 1.65
+      width: 0
+      height: 0.2
+    - serializedVersion: 2
+      x: 0.3125
+      y: 1.65
+      width: 0
+      height: 0.2
 --- !u!1 &8578480978983933129
 GameObject:
   m_ObjectHideFlags: 0

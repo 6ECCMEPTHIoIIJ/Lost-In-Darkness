@@ -4,50 +4,33 @@ public class CharacterScaredState : CharacterGroundedState
 {
     private static readonly int ScaredAnim = Animator.StringToHash("Scared");
 
-    private float _scareDuration;
-    private float _enterTime;
-
+    private FixedTimer _scaring;
     private Animator _anim;
 
-    public override void OnSetData(object data)
+    protected override CharacterStates Id => CharacterStates.Scared;
+
+    public override void OnSetData(in CharacterStateData data)
     {
-        base.OnSetData(data);
-        (_scareDuration, _anim) = (Data)data;
+        base.OnSetData(in data);
+        _anim = data.anim;
+        _scaring = new FixedTimer(data.scareDuration);
     }
 
     public override void OnEnter()
     {
         base.OnEnter();
-        _anim.SetBool(ScaredAnim, true);
-        _enterTime = Time.fixedTime;
-    }
-
-    public override void OnExit()
-    {
-        base.OnExit();
-        _anim.SetBool(ScaredAnim, false);
+        _anim.SetTrigger(ScaredAnim);
+        _scaring.Start();
     }
 
     public override void OnFixedUpdate()
     {
         base.OnFixedUpdate();
-        if (!IsActive) return;
+        if (!Active) return;
 
-        if (Time.fixedTime - _enterTime > _scareDuration)
+        if (!_scaring)
         {
             SwitchState(CharacterStates.Idle);
-        }
-    }
-
-    public new class Data : CharacterGroundedState.Data
-    {
-        public float ScareDuration;
-        public Animator Anim;
-
-        public void Deconstruct(out float scaredDuration, out Animator anim)
-        {
-            scaredDuration = ScareDuration;
-            anim = Anim;
         }
     }
 }

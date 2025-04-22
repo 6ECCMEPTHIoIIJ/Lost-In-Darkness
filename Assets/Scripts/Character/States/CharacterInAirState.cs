@@ -1,45 +1,58 @@
 using UnityEngine;
 
-public abstract class CharacterInAirState : State<CharacterStates>
+public abstract class CharacterInAirState : State<CharacterStates, CharacterStateData>
 {
-    private float _movementSpeed;
+    private float _inAirSpeed;
     private Rect[] _floorDetects;
     private LayerMask _whatIsFloor;
 
-    private Transform _transform;
-    private InputManager _input;
+    private Transform _tr;
+    private IMoveXBrain _moveBr;
     private Rigidbody2D _rb;
 
-    public override void OnSetData(object data)
+    public override void OnSetData(in CharacterStateData data)
     {
-        base.OnSetData(data);
-        (_movementSpeed, _floorDetects, _whatIsFloor, _rb, _input, _transform) = (Data)data;
+        base.OnSetData(in data);
+        _tr = data.tr;
+        _moveBr = data.input;
+        _rb = data.rb;
+        _inAirSpeed = data.inAirSpeed;
+        _floorDetects = data.floorDetects;
+        _whatIsFloor = data.whatIsGround;
     }
 
     public override void OnFixedUpdate()
     {
         base.OnFixedUpdate();
-        if (!IsActive) return;
+        if (!Active) return;
 
-        _rb.linearVelocityX = _input.MovementDirection * _movementSpeed;
-        if (_rb.linearVelocityY < 0.1f && IsTouchingFloor(out var groundPoint))
+        _rb.linearVelocityX = _moveBr.MoveX * _inAirSpeed;
+        if (_moveBr.MoveX > 0 != _tr.localScale.x > 0 && _moveBr.MoveX != 0)
         {
-            _transform.position = new Vector2(_transform.position.x, groundPoint.y);
+            _tr.localScale = new Vector3(
+                Mathf.Sign(_moveBr.MoveX) * Mathf.Abs(_tr.localScale.x),
+                _tr.localScale.y, _tr.localScale.z);
+        }
+
+        if (Id == CharacterStates.Jumping) return;
+        if (IsTouchingFloor(out var groundPoint))
+        {
+            _tr.position = new Vector2(_tr.position.x, groundPoint.y);
             _rb.linearVelocityY = 0;
-            SwitchState(_input.MovementDirection == 0
+            SwitchState(_moveBr.MoveX == 0
                 ? CharacterStates.Idle
-                : CharacterStates.Walking
+                : CharacterStates.Run
             );
         }
     }
 
     private bool IsTouchingFloor(out Vector2 groundPoint)
     {
-        var transform2D = new Vector2(_transform.position.x, _transform.position.y);
+        var transform2D = new Vector2(_tr.position.x, _tr.position.y);
         foreach (var detect in _floorDetects)
         {
-            var scaledPosition = new Vector2(detect.x * Mathf.Sign(_transform.localScale.x),
-                detect.y * Mathf.Sign(_transform.localScale.y));
+            var scaledPosition = new Vector2(detect.x * Mathf.Sign(_tr.localScale.x),
+                detect.y * Mathf.Sign(_tr.localScale.y));
             var origin = transform2D + scaledPosition;
             var direction = detect.size.normalized;
             var distance = detect.size.magnitude;
@@ -51,28 +64,5 @@ public abstract class CharacterInAirState : State<CharacterStates>
 
         groundPoint = default;
         return false;
-    }
-
-    public abstract class Data
-    {
-        public float MovementSpeed;
-
-        public Rect[] FloorDetects;
-        public LayerMask WhatIsFloor;
-
-        public Rigidbody2D Rb;
-        public InputManager Input;
-        public Transform Transform;
-
-        public void Deconstruct(out float movementSpeed, out Rect[] floorDetects, out LayerMask whatIsFloor,
-            out Rigidbody2D rb, out InputManager input, out Transform transform)
-        {
-            movementSpeed = MovementSpeed;
-            floorDetects = FloorDetects;
-            whatIsFloor = WhatIsFloor;
-            rb = Rb;
-            input = Input;
-            transform = Transform;
-        }
     }
 }

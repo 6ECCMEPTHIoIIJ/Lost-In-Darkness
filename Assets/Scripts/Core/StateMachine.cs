@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 
-public interface IState<T>
+public interface IState<T, TData> where TData : struct where T : Enum
 {
-    public void OnInitialize(StateMachine<T> sm);
-    public void OnSetData(object data);
+    public void OnInitialize(StateMachine<T, TData> sm);
+    public void OnSetData(in TData data);
     public void OnEnter();
     public void OnExit();
     public void OnUpdate();
@@ -14,21 +13,21 @@ public interface IState<T>
     public void SwitchState(T to);
 }
 
-public interface IStateMachine<T>
+public interface IStateMachine<T, TData> where TData : struct where T : Enum
 {
-    public void Initialize(IDictionary<T, IState<T>> states);
-    public void SetStateData(T state, object data);
+    public void Initialize(IDictionary<T, IState<T, TData>> states);
+    public void SetData(TData data);
     public void Update();
     public void FixedUpdate();
     public void OnSwitchState(T to);
 }
 
-public class StateMachine<T> : IStateMachine<T>
+public class StateMachine<T, TData> : IStateMachine<T, TData> where TData : struct where T : Enum
 {
-    private IState<T>[] _states;
-    private IState<T> _currentState;
+    private IState<T, TData>[] _states;
+    private IState<T, TData> _currentState;
 
-    public void Initialize(IDictionary<T, IState<T>> states)
+    public void Initialize(IDictionary<T, IState<T, TData>> states)
     {
         _states = states.Values.ToArray();
         foreach (var state in _states)
@@ -37,9 +36,12 @@ public class StateMachine<T> : IStateMachine<T>
         }
     }
 
-    public void SetStateData(T state, object data)
+    public void SetData(TData data)
     {
-        _states[Convert.ToInt32(state)].OnSetData(data);
+        foreach (var state in _states)
+        {
+            state.OnSetData(data);
+        }
     }
 
     public void Update()
@@ -60,28 +62,30 @@ public class StateMachine<T> : IStateMachine<T>
     }
 }
 
-public abstract class State<T> : IState<T>
+public abstract class State<T, TData> : IState<T, TData> where TData : struct where T : Enum
 {
-    protected bool IsActive;
-    private StateMachine<T> _sm;
+    private StateMachine<T, TData> _sm;
 
-    public void OnInitialize(StateMachine<T> sm)
+    protected bool Active;
+    protected abstract T Id { get; }
+
+    public void OnInitialize(StateMachine<T, TData> sm)
     {
         _sm = sm;
     }
 
-    public virtual void OnSetData(object data)
+    public virtual void OnSetData(in TData data)
     {
     }
 
     public virtual void OnEnter()
     {
-        IsActive = true;
+        Active = true;
     }
 
     public virtual void OnExit()
     {
-        IsActive = false;
+        Active = false;
     }
 
     public virtual void OnUpdate()

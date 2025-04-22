@@ -59,7 +59,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Gamepad",
+                    "name": "Gamepad Stick",
                     "id": "f60b45c1-c0d0-43df-baf1-14d977750b34",
                     "path": "1DAxis",
                     "interactions": "",
@@ -84,6 +84,39 @@
                     "name": "positive",
                     "id": "6bc0c710-afc1-42b0-9e5e-bdabe465fbc0",
                     "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Gamepad D-Pad",
+                    "id": "74864c47-a84e-464d-8fc5-76fa0a76c79b",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "74d0150b-8dad-4814-aaf7-dffee5cedf93",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "276705d8-1ef0-40ed-bbbc-70c4504ddcd3",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -284,7 +284,7 @@ MonoBehaviour:
     tr: {fileID: 0}
     inAirSpeed: 6.25
     maxFallSpeed: 39.24
-    jumpHeight: 5.25
+    jumpHeight: 6
     runSpeed: 9.375
     startRunDuration: 0.2
     endRunDuration: 0.2

@@ -189,7 +189,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -1461,10 +1461,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures:
-    - texture: {fileID: 2800000, guid: 2f86575e3c83fbe44a3bfb5e269c2057, type: 3}
-      name: _LightMap
     - texture: {fileID: 2800000, guid: 9c2448f33e5c64845b2e54c69b9f2338, type: 3}
       name: _NormalMap
+    - texture: {fileID: 2800000, guid: 2f86575e3c83fbe44a3bfb5e269c2057, type: 3}
+      name: _LightMap
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:

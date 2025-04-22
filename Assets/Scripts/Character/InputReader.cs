@@ -40,6 +40,6 @@ public class InputReader : MonoBehaviour, IMoveXBrain, IJumpBrain
 
     public void FixedUpdate()
     {
-        Jump &= holdingJump;
+        Jump &= holdingJump.Check();
     }
 }

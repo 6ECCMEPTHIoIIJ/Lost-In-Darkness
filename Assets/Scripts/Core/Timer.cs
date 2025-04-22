@@ -19,9 +19,10 @@ public struct Timer
         _startTime = Time.time;
     }
 
-    public static implicit operator bool(Timer timer)
+    public bool Check()
     {
-        return Time.time - timer._startTime < timer.duration;
+        return Time.time - _startTime < duration;
+
     }
 }
 
@@ -43,8 +44,9 @@ public struct FixedTimer
         _startTime = Time.fixedTime;
     }
 
-    public static implicit operator bool(FixedTimer timer)
+    public bool Check()
     {
-        return Time.fixedTime - timer._startTime < timer.duration;
+        return Time.time - _startTime < duration;
+
     }
 }

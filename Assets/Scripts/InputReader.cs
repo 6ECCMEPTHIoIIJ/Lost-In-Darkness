@@ -3,9 +3,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
-public class InputReader : MonoBehaviour, IMoveXBrain, IJumpBrain
+public class InputReader : MonoBehaviour
 {
-    [SerializeField] private FixedTimer holdingJump;
+    private float _jumpHoldTime;
+    
+    [SerializeField] private float jumpHoldDuration = 0.1f;
 
     public float MoveX { get; private set; }
     public bool FlipX { get; private set; }
@@ -30,7 +32,7 @@ public class InputReader : MonoBehaviour, IMoveXBrain, IJumpBrain
         {
             Jump = true;
             JumpHold = true;
-            holdingJump.Start();
+            _jumpHoldTime = Time.fixedTime;
         }
         else if (context.canceled)
         {
@@ -40,6 +42,6 @@ public class InputReader : MonoBehaviour, IMoveXBrain, IJumpBrain
 
     public void FixedUpdate()
     {
-        Jump &= holdingJump.Check();
+        Jump &= Time.fixedTime - _jumpHoldTime < jumpHoldDuration;
     }
 }

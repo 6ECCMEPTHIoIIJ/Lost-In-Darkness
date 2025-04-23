@@ -72,6 +72,7 @@ Material:
     m_Floats:
     - _Convexity: 1
     - _EnableExternalAlpha: 0
+    - _Pixel_Per_Unit: 1080
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

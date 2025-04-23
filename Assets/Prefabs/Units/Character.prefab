@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6726184703556257253}
   m_Layer: 6
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -263,8 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6a71fb07494267a649fc6caaed86a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdingJump:
-    duration: 0.1
+  jumpHoldDuration: 0.1
 --- !u!114 &6726184703556257253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,8 +280,7 @@ MonoBehaviour:
   maxFallSpeed: 39.24
   jumpHeight: 6
   minJumpHeight: 1.5
-  coyoteTimer:
-    duration: 0.1
+  coyoteDuration: 0.1
   runSpeed: 9.375
   stopDelay: 0.2
   whatIsGround:

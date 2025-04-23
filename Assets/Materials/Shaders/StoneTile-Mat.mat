@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Character-Mat
+  m_Name: StoneTile-Mat
   m_Shader: {fileID: -6465566751694194690, guid: ef476df3d650ce046821082232e02053, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -36,16 +36,20 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _LightMap:
-        m_Texture: {fileID: -8328923581568760697, guid: b441ed7570f7b9948868ef79e7811de3, type: 3}
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _LightTex:
-        m_Texture: {fileID: -8328923581568760697, guid: b441ed7570f7b9948868ef79e7811de3, type: 3}
+    - _LightMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: -8328923581568760697, guid: 775780c18d33ac348b475790847ef918, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -66,10 +70,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Pixel_Per_Unit: 16
+    - _Convexity: 1
+    - _EnableExternalAlpha: 0
+    - _Pixel_Per_Unit: 1080
+    - _ZWrite: 0
     m_Colors:
-    - _EmissionColor: {r: 11.984314, g: 11.984314, b: 11.984314, a: 0}
-    - _LightColor: {r: 5.9921575, g: 2.1222727, b: 0, a: 0}
-    - _Offset: {r: 0, g: -0.84, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 3.8441591, g: 2.42529, b: 7.516981, a: 0}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

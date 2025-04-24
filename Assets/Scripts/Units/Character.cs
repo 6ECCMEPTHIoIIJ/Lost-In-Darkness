@@ -32,9 +32,6 @@ public class Character : MonoBehaviour
     private bool _prevIsGrounded;
     private bool _isGrounded;
 
-    private bool _isStuck;
-    private Rigidbody2D _stickyRb;
-
     private int _idleFrames;
 
     [Header("In Air")] [SerializeField] private float inAirSpeed = 0.0625f * 30;
@@ -49,17 +46,6 @@ public class Character : MonoBehaviour
     [Header("Collisions")] [SerializeField]
     private LayerMask whatIsGround;
 
-    public void Stuck(Rigidbody2D rb)
-    {
-        _isStuck = true;
-        _stickyRb = rb;
-    }
-
-    public void Unstuck()
-    {
-        _isStuck = false;
-    }
-    
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -119,10 +105,6 @@ public class Character : MonoBehaviour
     {
         var speed = _isGrounded ? runSpeed : inAirSpeed;
         _rb.linearVelocityX = _input.MoveX * speed;
-        if (_isStuck)
-        {
-            _rb.linearVelocity += _stickyRb.linearVelocity;
-        }
     }
 
     private void ProcessJump()

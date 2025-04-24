@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -20,6 +21,8 @@ public class FlyingPlatform : MonoBehaviour
     private float _intensity;
 
     private int _currentPoint;
+
+    private readonly SortedSet<Rigidbody2D> _passengers = new();
 
     private void Awake()
     {
@@ -78,22 +81,24 @@ public class FlyingPlatform : MonoBehaviour
         {
             _rb.linearVelocity = path.normalized * Mathf.Min(speed, distance / Time.fixedDeltaTime);
         }
+
+        foreach (var passenger in _passengers)
+        {
+            passenger.linearVelocityX += _rb.linearVelocityX;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.TryGetComponent(out Character character))
+        if (_tr.position.y < other.transform.position.y)
         {
-            character.Stuck(_rb);
+            _passengers.Add(other.rigidbody);
         }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.TryGetComponent(out Character character))
-        {
-            character.Unstuck();
-        }
+        _passengers.Remove(other.rigidbody);
     }
 
 

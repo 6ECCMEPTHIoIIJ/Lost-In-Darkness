@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - Background
   - 
   - 
   - 
@@ -41,11 +41,26 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2802177015
+    locked: 0
+  - name: Fog Background
+    uniqueID: 392084003
+    locked: 0
   - name: Ground
     uniqueID: 728319335
     locked: 0
   - name: Player
     uniqueID: 2556039453
+    locked: 0
+  - name: Fog Ground
+    uniqueID: 2440796887
+    locked: 0
+  - name: Foreground
+    uniqueID: 241759737
+    locked: 0
+  - name: Fog Foreground
+    uniqueID: 1771891203
     locked: 0
   m_RenderingLayers:
   - Default

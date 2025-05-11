@@ -1,161 +1,79 @@
+using NaughtyAttributes;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(InputReader))]
-[RequireComponent(typeof(BoxCollider2D))]
-public class Character : MonoBehaviour
+public class Character : Actor
 {
-    private static readonly int FlipXAnim = Animator.StringToHash("FlipX");
+    
     private static readonly int MoveXAnim = Animator.StringToHash("MoveX");
     private static readonly int GroundedAnim = Animator.StringToHash("Grounded");
     private static readonly int JumpAnim = Animator.StringToHash("Jump");
+    private static readonly int FlipXAnim = Animator.StringToHash("FlipX");
 
-    private Animator _anim;
-    private Rigidbody2D _rb;
+    [ShowNonSerializedField] private bool _isGrounded;
+    [ShowNonSerializedField] private float _velocityY;
+    [ShowNonSerializedField] private float _velocityX;
+    [ShowNonSerializedField] private bool _flipX;
+
     private InputReader _input;
-    private BoxCollider2D _box;
-    private Transform _tr;
+    private Animator _anim;
 
-    private float _jumpSpeed;
-    private float _endJumpMultiplier;
+    [SerializeField] private int gravity = 16 * 10;
+    [SerializeField] private int inAirSpeed = 16 * 3;
+    [SerializeField] private int runSpeed = 16 * 5;
 
-    private float _coyoteTime;
-
-    private bool _prevFlipX;
-    private bool _flipX;
-
-    private bool _prevIsJumping;
-    private bool _isJumping;
-    private bool _canJump;
-
-    private bool _prevIsGrounded;
-    private bool _isGrounded;
-
-    private int _idleFrames;
-
-    [Header("In Air")] [SerializeField] private float inAirSpeed = 0.0625f * 30;
-    [SerializeField] private float maxFallSpeed = 9.81f * 4f;
-    [SerializeField] private float jumpHeight = 6f;
-    [SerializeField] private float minJumpHeight = 3f;
-    [SerializeField] private float coyoteDuration = 0.1f;
-
-    [Header("Run")] [SerializeField] private float runSpeed = 0.0625f * 50;
-    [SerializeField] private float stopDelay = 0.1f;
-
-    [Header("Collisions")] [SerializeField]
-    private LayerMask whatIsGround;
-
-    private void Awake()
+    protected override void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _anim = GetComponent<Animator>();
+        base.Awake();
         _input = GetComponent<InputReader>();
-        _box = GetComponent<BoxCollider2D>();
-        _tr = transform;
+        _anim = GetComponent<Animator>();
     }
 
-    private void Start()
+    protected override void Start()
     {
-        InitializeJumpData();
+        base.Start();
+        _flipX = _input.FlipX;
     }
 
     private void Update()
     {
-        ProcessAnimation();
-    }
-
-    private void ProcessAnimation()
-    {
-        var maxIdleFrames = Mathf.RoundToInt(stopDelay / Time.deltaTime);
-        _idleFrames = _input.MoveX == 0 ? _idleFrames + 1 : 0;
-        _anim.SetBool(MoveXAnim, _idleFrames < maxIdleFrames);
+        _anim.SetBool(MoveXAnim, _input.MoveX != 0);
         _anim.SetBool(GroundedAnim, _isGrounded);
-        if (_flipX != _prevFlipX)
+        if (_input.FlipX != _flipX)
         {
             _anim.SetTrigger(FlipXAnim);
+            _flipX = _input.FlipX;
         }
-
-        if (_isJumping && !_prevIsJumping)
-        {
-            _anim.SetTrigger(JumpAnim);
-        }
-
-        _prevIsJumping = _isJumping;
     }
 
     private void FixedUpdate()
     {
-        ProcessMoveX();
-        ProcessFlipX();
-        ProcessJump();
-        CheckIfGrounded();
-        ProcessEndJump();
-        ProcessFall();
-    }
+        _velocityX = _input.MoveX * runSpeed;
+        transform.FlipX(_input.FlipX);
+        MoveX(_velocityX * Time.fixedDeltaTime, OnTouchingWall);
+        _isGrounded = _isGrounded && CollideAtY(-1, out _);
 
-    private void InitializeJumpData()
-    {
-        _endJumpMultiplier = Mathf.Sqrt(minJumpHeight / jumpHeight);
-        var gravity = -Physics2D.gravity.y;
-        _jumpSpeed = Mathf.Sqrt(2f * jumpHeight * gravity) + gravity * Time.fixedDeltaTime;
-    }
-
-    private void ProcessMoveX()
-    {
-        var speed = _isGrounded ? runSpeed : inAirSpeed;
-        _rb.linearVelocityX = _input.MoveX * speed;
-    }
-
-    private void ProcessJump()
-    {
-        if (_canJump && _input.Jump && (_isGrounded || Time.fixedTime - _coyoteTime <= coyoteDuration))
+        if (!_isGrounded)
         {
-            _canJump = false;
-            _isGrounded = false;
-            _isJumping = true;
-            _rb.linearVelocityY = _jumpSpeed;
+            _velocityY -= gravity * Time.fixedDeltaTime;
+            MoveY(_velocityY * Time.fixedDeltaTime, OnLand);
         }
     }
 
-    private void ProcessEndJump()
+    public override void Squish()
     {
-        _isJumping &= !_isGrounded && _rb.linearVelocityY > 0.1f;
-        if (!_isJumping) return;
-        if (!_input.JumpHold)
-        {
-            _isJumping = false;
-            _rb.linearVelocityY *= _endJumpMultiplier;
-        }
-        else if (_box.RaycastUp(whatIsGround))
-        {
-            _isJumping = false;
-        }
+        base.Squish();
+        Destroy(gameObject);
     }
 
-    private void ProcessFlipX()
+    private void OnLand()
     {
-        _prevFlipX = _flipX;
-        _flipX = _input.FlipX;
-        if (_flipX != _prevFlipX)
-        {
-            _tr.FlipX(_flipX);
-        }
+        _isGrounded = true;
+        _velocityY = 0f;
+        YRemainder = 0f;
     }
 
-    private void ProcessFall()
+    private void OnTouchingWall()
     {
-        _rb.linearVelocityY = Mathf.Max(-maxFallSpeed, _rb.linearVelocityY);
-    }
-
-    private void CheckIfGrounded()
-    {
-        _prevIsGrounded = _isGrounded;
-        _isGrounded = !_isJumping && _box.RaycastDown(whatIsGround);
-        _canJump |= _isGrounded;
-        if (!_isGrounded && _prevIsGrounded)
-        {
-            _coyoteTime = Time.fixedTime;
-        }
+        XRemainder = 0f;
     }
 }

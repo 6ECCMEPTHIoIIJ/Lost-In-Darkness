@@ -9,7 +9,7 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "70815460-ee72-44da-a307-98a84a15736f",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Vector2",
                     "processors": "Normalize(max=1)",
                     "interactions": "",
                     "initialStateCheck": true
@@ -22,13 +22,22 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Kick",
+                    "type": "Button",
+                    "id": "bdeddbdb-a65a-4455-ac37-0dd694ffc345",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "Keyboard",
                     "id": "72996ba1-3d15-41b1-995c-6731bb59b202",
-                    "path": "1DAxis",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -37,8 +46,30 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "Up",
                     "id": "7b6919d3-e69e-477a-9c88-d414ea1370d8",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Down",
+                    "id": "8050b076-d6e4-4412-acfb-3e9447f0a065",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Left",
+                    "id": "13b90c01-2740-4b7d-be88-fa8547a0ba3f",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -48,8 +79,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
-                    "id": "8050b076-d6e4-4412-acfb-3e9447f0a065",
+                    "name": "Right",
+                    "id": "d2203e48-d5d3-42b6-9934-ee3a9887d587",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -143,6 +174,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b229b21b-a00a-440c-9dcb-5f5d9e07d54c",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Kick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
